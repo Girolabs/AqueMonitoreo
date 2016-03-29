@@ -56,8 +56,8 @@
               <div class="col-md-2"><h4 class="progress-label"> {{eje.nombre}} </h4></div>
               <div class="col-md-10">
                    <div class="progress">
-                    <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"  aria-valuenow="{{eje.porcentaje}}" aria-valuemin="0" aria-valuemax="100" style="width:{{eje.porcentaje}}%">
-                      {{eje.porcentaje}}
+                    <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"  aria-valuenow="{{eje.porcentaje}}" aria-valuemin="0" aria-valuemax="100" style="width:{{eje.porcentaje |floatformat:'0'}}%">
+                      {{eje.porcentaje |floatformat:'0'}} %
                     </div>
                   </div>
               </div>
