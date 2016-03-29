@@ -13,7 +13,7 @@ class ArticuloAdmin(admin.ModelAdmin):
 
 
 class PreguntaAdmin(admin.ModelAdmin):
-	list_display = ('pregunta', 'eje',)
+	list_display = ('pregunta', 'eje', 'estado')
 
 
 class EjeAdmin(admin.ModelAdmin):
