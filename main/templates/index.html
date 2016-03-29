@@ -89,7 +89,7 @@
 			        <li {% if forloop.first %} class="active" {% endif %} >
 
 			           <a href="#{{ eje.id }}" data-toggle="tab">
-			              <div class="imagen-tab"><img class="icono-tab"src="{% static 'img/student.png' %}"></div> 
+			              <div class="imagen-tab"><img class="icono-tab"src="{{eje.imagen.url}}"></div> 
 			              {{eje.nombre}} 
 			              <span class="badge">{{eje.total_aprobado}} /{{eje.total}} </span>
 

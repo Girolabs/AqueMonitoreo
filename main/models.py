@@ -43,7 +43,7 @@ class Eje(models.Model):
 	distrito = models.ForeignKey(Distrito, on_delete=models.CASCADE, related_name='ejes', null=True)
 	nombre = models.CharField(max_length=200, help_text="Complete con un nombre de Eje. Ej: Educacion")
 	breve_explicacion = models.CharField(max_length=200 , blank=True )
-	imagen = models.ImageField("Image")
+	imagen = models.ImageField("imagen")
 	def _get_total_aprobado(self):
 		"Retorna el total de preguntas Aprobadas del eje"
 		return len(Pregunta.objects.filter(eje_id=self.id, estado = "Aprobado"))
