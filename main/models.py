@@ -89,6 +89,7 @@ class Pregunta(models.Model):
     						 default='Sin Estado')
 	respuesta = RichTextField(default="", blank=True );
 	responsables = models.ManyToManyField(Responsable)
+	orden = models.IntegerField(default=1)
 	def __unicode__(self):
 		return self.eje.nombre  + "-" + self.pregunta[:50] + "..."
 
