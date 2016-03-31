@@ -87,11 +87,13 @@ class Pregunta(models.Model):
 	estado = models.CharField(max_length=15,
     						 choices=POSIBLES_ESTADOS, 
     						 default='Sin Estado')
-	respuesta = RichTextField(default="", blank=True );
-	responsables = models.ManyToManyField(Responsable)
-	orden = models.IntegerField(default=1)
+	respuesta = RichTextField(default="", blank=True , help_text="La respuesta es una respuesta de hasta 200 caracteres");
+	responsables = models.ManyToManyField(Responsable, )
+	orden = models.IntegerField(default=1,  help_text="Donde el de orden 0 aparece primero en la lista que  el orden 1")
 	def __unicode__(self):
 		return self.eje.nombre  + "-" + self.pregunta[:50] + "..."
+	class Meta:
+		ordering = ['orden','id']
 
 
 class Articulo(models.Model):
