@@ -21,7 +21,9 @@ from django.conf import settings
 urlpatterns = [
  url(r'^admin/', admin.site.urls),
 	url(r'^', include('main.urls')),
-	url(r'^tinymce/', include('tinymce.urls')), # Texto enriquecido
+	
+	url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+
 
    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

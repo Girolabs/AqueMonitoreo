@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tinymce', # Texto enriquecido
+    #'tinymce', # Texto enriquecido
     'ckeditor',
+    'ckeditor_uploader',
     'main'
 ]
 
@@ -145,3 +146,4 @@ CKEDITOR_CONFIGS = {
     },
 }
 
+CKEDITOR_UPLOAD_PATH = "uploads/"
