@@ -5,6 +5,8 @@ from __future__ import unicode_literals
 from django.db import models
 from tinymce.models import HTMLField
 from ckeditor.fields import RichTextField
+
+from ckeditor_uploader.fields import RichTextUploadingField
 import datetime
 
 from datetime import date
@@ -99,7 +101,7 @@ class Pregunta(models.Model):
 class Articulo(models.Model):
 	"""docstring for Articulo"""
 	titulo = models.CharField(max_length=500,unique=True, default="")
-	contenido = RichTextField(default="", blank=True );
+	contenido = RichTextUploadingField(default="", blank=True );
 	pregunta =  models.OneToOneField(Pregunta, on_delete=models.CASCADE)
 	def _get_url(self):
 		"Retorna el total de preguntas Aprobadas del eje"
