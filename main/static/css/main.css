@@ -1,0 +1,101 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+
+.progress {
+	height: 20px;
+}
+
+.progress-label {
+    float: left;
+    margin-right: 1em;
+    top: -10px;
+        position: relative;
+}
+
+
+.barra-progreso {
+    overflow: hidden;
+}
+
+.nav-tabs li.active {
+    background: rgba(221, 221, 221, 0.44);
+}
+
+
+.imagen-tab {
+    text-align: center;
+}
+
+img.icono-tab {
+    width: 30px;
+}
+
+
+
+p.respuesta {
+    font-weight: bold;
+}
+
+td.estado {
+    text-align: center;
+}
+
+.estado i.material-icons {
+    font-size: 30px;
+}
+
+
+.nav-tabs i {
+        display: block;
+    text-align: center;
+    font-size: 30px;
+}
+
+
+.jumbotron {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+
+hr {
+    background: #333;
+}
+
+
+
+/*
+ * CSS Animations
+ * Don't forget to add vendor prefixes!
+ */
+.m-scene .scene_element {
+  animation-duration: 0.25s;
+  transition-timing-function: ease-in;
+  animation-fill-mode: both;
+}
+
+.m-scene .scene_element--fadein {
+  animation-name: fadeIn;
+}
+
+.m-scene.is-exiting .scene_element {
+  animation-direction: alternate-reverse;
+}
+
+/*
+ * Keyframes
+ */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
+
+
