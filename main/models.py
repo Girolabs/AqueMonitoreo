@@ -102,7 +102,7 @@ class Articulo(models.Model):
 	"""docstring for Articulo"""
 	titulo = models.CharField(max_length=500,unique=True, default="")
 	contenido = RichTextUploadingField(default="", blank=True );
-	pregunta =  models.OneToOneField(Pregunta, on_delete=models.CASCADE)
+	pregunta =  models.ForeignKey(Pregunta, on_delete=models.CASCADE)
 	def _get_url(self):
 		"Retorna el total de preguntas Aprobadas del eje"
 		aux = unicodedata.normalize('NFKD', self.titulo ).encode('ascii', 'ignore')
