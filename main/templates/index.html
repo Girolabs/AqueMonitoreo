@@ -156,8 +156,14 @@
                                                   {% endif %}
                                               </i>
 
-                                               {% if pregunta.articulo != "" %}
-                                              <a href="/articulo/{{ pregunta.articulo }}" class="btn btn-raised btn-primary btn-xs"> Ver Detalles</a>
+                                               {% if pregunta.articulos.all  %}
+
+                                                {% for articulo in pregunta.articulos.all %}
+                                                         <a href="/articulo/{{ articulo.link }}" class="btn btn-raised btn-primary btn-xs"> Ver Detalles
+                                                 
+                                              </a>
+                                                  {% endfor %}
+                                             
                                               {% endif %}
                                             </td>
 

@@ -17,6 +17,21 @@
 .interna .nav-tabs {
     background: #FFFFFF;
 }
+.panel-heading {
+
+background: url("{{pregunta.eje.imagen}}");
+
+}
+
+.panel.panel-danger > .panel-heading {
+	background: url("{{pregunta.eje.imagen_destacada.url}}");
+	    height: 250px;
+    padding: 153px 0px 0px 40px;
+}
+.panel.panel-danger > .panel-heading  h1{
+	color: white;
+}
+
 </style>
    
     <div class="container interna">
@@ -26,7 +41,10 @@
 		<div class="col-md-12">
 				<div class="panel panel-danger">
 
-					<div class="panel-heading"><h1>{{articulo.titulo}}</h1> </div>
+					
+
+
+					<div class="panel-heading"><h1>{{articulo.titulo}} </h1> </div>
 				 	<div class="panel-body">
 				    
 

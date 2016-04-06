@@ -23,10 +23,10 @@ def index(request):
 
 def articulo(request, articulo_id):
 	#serializar(articulo_id)
-	articulo  = Articulo.objects.get(titulo = articulo_id.replace("_"," "))
+	articulo  = Articulo.objects.get(link = articulo_id)
 	
-
-	pregunta = Pregunta.objects.get(id=articulo.pregunta.id)
+	pregunta_aux = articulo.preguntas.get();
+	pregunta = Pregunta.objects.get(id=pregunta_aux.id)
 	context = {'articulo':articulo, 'pregunta':pregunta}
 	#print pregunta.pregunta
 
