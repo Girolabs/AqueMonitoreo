@@ -68,6 +68,9 @@ hr {
     background: #333;
 }
 
+.estado i.material-icons {
+  display: block;
+}
 
 
 /*
@@ -95,6 +98,8 @@ hr {
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+
+
 
 
 

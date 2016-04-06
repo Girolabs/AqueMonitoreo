@@ -12,6 +12,10 @@ import datetime
 from datetime import date
 import unicodedata
 
+from django.core.exceptions import ValidationError
+from django.core.validators import RegexValidator, validate_slug
+from django.template.defaultfilters import slugify
+
 
 # Create your models here.
 
@@ -60,6 +64,8 @@ class Eje(models.Model):
 			aux =   round (float( float(self.total_aprobado) / float(self.total)) * 100 , 0)
 			return aux
 	porcentaje = property(_get_porcentaje)
+	imagen_destacada = models.ImageField("Imagen Destacada")
+
 
 	
 
@@ -102,14 +108,28 @@ class Articulo(models.Model):
 	"""docstring for Articulo"""
 	titulo = models.CharField(max_length=500,unique=True, default="")
 	contenido = RichTextUploadingField(default="", blank=True );
-	pregunta =  models.ForeignKey(Pregunta, on_delete=models.CASCADE)
+	preguntas =  models.ManyToManyField(Pregunta,related_name="articulos")
+		
+
 	def _get_url(self):
 		"Retorna el total de preguntas Aprobadas del eje"
 		aux = unicodedata.normalize('NFKD', self.titulo ).encode('ascii', 'ignore')
 		return aux.replace(" ","_")
 	url = property(_get_url)
 	def __unicode__(self):
-		return self.url
+		return self.titulo
+	alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.')
+	link = models.CharField(max_length=500,unique=False, null=True, blank=True,validators=[validate_slug],  help_text="Atencion, omitir los espacios en blancos y caracteres espciales, solo letras y _ y -")
+	
+
+	def save(self, *args, **kwargs):
+        #check if the row with this hash already exists.
+		if not self.pk:	
+			self.link = slugify(self.titulo) 
+		if not self.link: 
+			self.link = slugify(self.titulo) 
+        
+		super(Articulo, self).save(*args, **kwargs)
 
 
 

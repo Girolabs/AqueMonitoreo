@@ -9,7 +9,7 @@ from .models import Eje,Pregunta, Articulo, Distrito, Responsable
 
 
 class ArticuloAdmin(admin.ModelAdmin):
-	list_display = ('titulo', 'pregunta')
+	list_display = ('titulo')
 
 
 class PreguntaAdmin(admin.ModelAdmin):
@@ -24,5 +24,5 @@ class EjeAdmin(admin.ModelAdmin):
 admin.site.register(Distrito)
 admin.site.register(Eje, EjeAdmin)
 admin.site.register(Pregunta, PreguntaAdmin)
-admin.site.register(Articulo, ArticuloAdmin)
+admin.site.register(Articulo)
 admin.site.register(Responsable)
