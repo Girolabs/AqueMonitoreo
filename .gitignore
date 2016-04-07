@@ -23,3 +23,4 @@ dist
 media/
 static/
 migrations/
+settings.py
