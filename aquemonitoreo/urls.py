@@ -26,3 +26,10 @@ urlpatterns = [
     
    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+handler400 = 'main.views.bad_request'
+handler403 = 'main.views.bad_request'
+handler404 = 'main.views.bad_request'
+handler500 = 'main.views.bad_request'
