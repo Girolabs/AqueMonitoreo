@@ -14,9 +14,10 @@ El sitio web esta diponible en [monitoreo.aquieneselegimos.org.py](http://monito
 Para levantar el curso de manera local seguir los siguientes pasos.
 
 ```bash
-git clone https://github.com/Girolabs/AqueMonitoreo.giy
+git clone git@github.com:yank07/AqueMonitoreo.git
 cd Aquemonitoreo
-pip install requirements.txt
+pip install -r requirements.txt
+python manage.py makemigrations
 python manage.py migrate
 python manage.py runserver
 
