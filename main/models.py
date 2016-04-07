@@ -78,6 +78,7 @@ class Responsable(models.Model):
 	nombre = models.CharField(max_length=200 , blank=True )
 	descripcion = RichTextField(default="", blank=True );
 	logo = models.ImageField("Logo")
+	url = models.URLField()
 
 	def __unicode__(self):
 		return  self.nombre
