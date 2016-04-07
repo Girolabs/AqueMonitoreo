@@ -77,6 +77,17 @@ hr {
     color: rgba(255,255,255, 0.84);
 }
 
+footer .atribucion p {
+  margin: 0px;
+    text-align: right;
+}
+
+footer {
+    border-top: solid 1px #333;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
 
 
 /*
