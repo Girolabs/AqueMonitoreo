@@ -67,6 +67,12 @@ background: url("{{pregunta.eje.imagen}}");
     margin-right: 14px;
 }
 
+.responsable {
+    border: solid 1px #ddd;
+    overflow: hidden;
+    padding: 10px 0px;
+}
+
 </style>
    
     <div class="container interna">
@@ -99,7 +105,9 @@ background: url("{{pregunta.eje.imagen}}");
 				     		 		{% for responsable in pregunta.responsables.all  %}
 
 								     		 	<div class="col-md-3" style="min-height:130px;">
-								     		 		<div class="row">
+
+								     		 		
+								     		 			<div class="responsable">
 								     		 			
 								     		 			<div class="col-md-6">
 								     		 				<img src="{{responsable.logo.url}}" style="width:100px;">
@@ -109,8 +117,9 @@ background: url("{{pregunta.eje.imagen}}");
 								     		 				<div class="row"><b>{{responsable.nombre}}</b> <p>{{responsable.descripcion|safe}}</p></div>
 								     		 				
 								     		 			</div>
+								     		 			</div>
 
-								     		 		</div>
+								     	
 								     		 		
 								     		 		
 								     		 		
