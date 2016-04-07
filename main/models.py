@@ -118,14 +118,13 @@ class Articulo(models.Model):
 	url = property(_get_url)
 	def __unicode__(self):
 		return self.titulo
-	alphanumeric = RegexValidator(r'^[0-9a-zA-Z]*$', 'Only alphanumeric characters are allowed.')
+	
 	link = models.CharField(max_length=500,unique=False, null=True, blank=True,validators=[validate_slug],  help_text="Atencion, omitir los espacios en blancos y caracteres espciales, solo letras y _ y -")
 	
 
 	def save(self, *args, **kwargs):
         #check if the row with this hash already exists.
-		if not self.pk:	
-			self.link = slugify(self.titulo) 
+		
 		if not self.link: 
 			self.link = slugify(self.titulo) 
         
