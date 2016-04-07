@@ -98,15 +98,15 @@ background: url("{{pregunta.eje.imagen}}");
 				     		 		
 				     		 		{% for responsable in pregunta.responsables.all  %}
 
-								     		 	<div class="col-md-3">
+								     		 	<div class="col-md-2">
 								     		 		<div class="row">
-								     		 			<b>{{responsable.nombre}}</b>
+								     		 			
 								     		 			<div class="col-md-6">
 								     		 				<img src="{{responsable.logo.url}}" style="width:100px;">
 								     		 			</div>
 
 								     		 			<div class="col-md-6">
-								     		 				<div class="row">{{responsable.descripcion|safe}}</div>
+								     		 				<div class="row"><b>{{responsable.nombre}}</b> <p>{{responsable.descripcion|safe}}</p></div>
 								     		 				
 								     		 			</div>
 
