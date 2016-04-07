@@ -1,6 +1,33 @@
 
+
+
 {% extends "base.html" %}
 {% load staticfiles %}
+
+{% block meta-tags%}
+	<meta property="og:url"           content="http://monitoreo.aquieneselegimos.org.py/articulos/{{articulo.link}}" />
+	<meta property="og:type"          content="article" />
+	<meta property="og:title"         content="Monitorieo - {{articulo.titulo|striptags}}" />
+	<meta property="og:description"   content="{{articulo.contenido|truncatechars:255}}" />
+	<meta property="og:image"         content="{{pregunta.eje.imagen_destacada.url}}" />
+	<meta property="og:author"         content="https://www.facebook.com/aquieneselegimos/" />
+
+
+
+{% endblock %}
+
+{% block bodybegin %}
+
+     	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=415575505224647";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+{% endblock %}
 {% block content%}
 
 <div id="fb-root"></div>
@@ -25,11 +52,19 @@ background: url("{{pregunta.eje.imagen}}");
 
 .panel.panel-danger > .panel-heading {
 	background: url("{{pregunta.eje.imagen_destacada.url}}");
-	    height: 250px;
+	height: 250px;
     padding: 153px 0px 0px 40px;
+    background-size: cover;
 }
 .panel.panel-danger > .panel-heading  h1{
 	color: white;
+}
+
+.fb_iframe_widget {
+    display: inline-block;
+    position: relative;
+    top: -5px;
+    margin-right: 14px;
 }
 
 </style>
@@ -39,12 +74,15 @@ background: url("{{pregunta.eje.imagen}}");
     <div class="row">
 
 		<div class="col-md-12">
-				<div class="panel panel-danger">
-
-					
+				<div class="panel panel-danger">			
 
 
-					<div class="panel-heading"><h1>{{articulo.titulo}} </h1> </div>
+					<div class="panel-heading"><h1>{{articulo.titulo}} </h1> 
+					<div class="fb-share-button" data-href="http://monitoreo.aquieneselegimos.org.py/articulos/{{pregunta.link}}" data-layout="button_count"></div>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-via="aquepy" data-lang="es" data-hashtags="100dias" data-dnt="true">Twittear</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+					 </div>
 				 	<div class="panel-body">
 				    
 
