@@ -31,7 +31,7 @@ def articulo(request, articulo_id):
 		raise Http404("Question does not exist")
 	
 	
-	pregunta_aux = articulo.preguntas.get();
+	pregunta_aux = articulo.preguntas.first();
 	pregunta = Pregunta.objects.get(id=pregunta_aux.id)
 	context = {'articulo':articulo, 'pregunta':pregunta}
 	#print pregunta.pregunta
