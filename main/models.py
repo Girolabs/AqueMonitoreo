@@ -109,7 +109,7 @@ class Articulo(models.Model):
 	"""docstring for Articulo"""
 	titulo = models.CharField(max_length=500,unique=True, default="")
 	contenido = RichTextUploadingField(default="", blank=True );
-	preguntas =  models.ManyToManyField(Pregunta,related_name="articulos")
+	preguntas =  models.ManyToManyField(Pregunta,related_name="articulos",  null=True, blank=True)
 		
 
 	def _get_url(self):

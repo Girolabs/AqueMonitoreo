@@ -32,8 +32,11 @@ def articulo(request, articulo_id):
 	
 	
 	pregunta_aux = articulo.preguntas.first();
-	pregunta = Pregunta.objects.get(id=pregunta_aux.id)
-	context = {'articulo':articulo, 'pregunta':pregunta}
+	if pregunta_aux:
+		pregunta = Pregunta.objects.get(id=pregunta_aux.id)
+		context = {'articulo':articulo, 'pregunta':pregunta}
+	else:
+		context = {'articulo':articulo}
 	#print pregunta.pregunta
 
 	return render_to_response('interna.html', context)
@@ -75,3 +78,12 @@ def server_error(request):
 	response = render_to_response('400.html',context_instance=RequestContext(request))
 	response.status_code = 400
 	return response
+
+
+def acercaDe(request):
+	
+	return render_to_response('acerca-de.html')
+
+def metodologia(request):
+	
+	return render_to_response('metodologia.html')
