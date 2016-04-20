@@ -77,7 +77,70 @@ hr {
     color: rgba(255,255,255, 0.84);
 }
 
+footer .atribucion p {
+  margin: 0px;
+    text-align: right;
+}
 
+footer {
+    border-top: solid 1px #333;
+    padding-top: 10px;
+    margin-top: 20px;
+}
+
+
+.interna .nav-tabs {
+    background: #FFFFFF;
+}
+
+.interna  .panel.panel-danger > .panel-heading h1 {
+    color: white;
+    font-weight: 800;
+    text-shadow: 1px 1px 1px black;
+}
+
+.interna  .panel-heading .fb_iframe_widget {
+    display: inline-block;
+    position: relative;
+    top: -5px;
+    margin-right: 14px;
+}
+
+.interna  .responsable {
+    border: solid 1px #ddd;
+    overflow: hidden;
+    padding: 10px 0px;
+    min-height: 150px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.interna .panel-body .contenido img {
+max-width: 100%;
+height: auto !important;
+}
+
+
+
+@media (max-device-width: 700px) {
+
+ .interna .panel.panel-danger > .panel-heading {
+    background: url("/media/imagen");
+    height: 250px;
+    padding: 20px 0px 0px 20px;
+    background-size: cover;
+}
+
+footer .atribucion p {
+    text-align: center;
+}
+
+footer .proyectoAque p {
+    text-align: center;
+}
+
+
+  }
 
 /*
  * CSS Animations

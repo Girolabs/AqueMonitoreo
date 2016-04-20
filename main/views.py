@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render, render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse,Http404
+from django.template import RequestContext
+
 from models import Eje, Pregunta, Distrito,Articulo
 import unicodedata
 
@@ -23,9 +25,13 @@ def index(request):
 
 def articulo(request, articulo_id):
 	#serializar(articulo_id)
-	articulo  = Articulo.objects.get(link = articulo_id)
+	try:
+		articulo  = Articulo.objects.get(link = articulo_id)
+	except Articulo.DoesNotExist:
+		raise Http404("Question does not exist")
 	
-	pregunta_aux = articulo.preguntas.get();
+	
+	pregunta_aux = articulo.preguntas.first();
 	pregunta = Pregunta.objects.get(id=pregunta_aux.id)
 	context = {'articulo':articulo, 'pregunta':pregunta}
 	#print pregunta.pregunta
@@ -53,3 +59,19 @@ def serializar( cadena):
 	print "serializar"
 	print aux.replace(" ","_")
 	return
+
+
+
+
+
+
+def bad_request(request):
+	response = render_to_response('400.html',context_instance=RequestContext(request))
+	response.status_code = 400
+	return response
+
+
+def server_error(request):
+	response = render_to_response('400.html',context_instance=RequestContext(request))
+	response.status_code = 400
+	return response
