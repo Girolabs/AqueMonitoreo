@@ -9,11 +9,13 @@ from .models import Eje,Pregunta, Articulo, Distrito, Responsable
 
 
 class ArticuloAdmin(admin.ModelAdmin):
-	list_display = ('titulo')
+	list_display = ('titulo',)
+	search_fields = ('titulo',  )
 
 
 class PreguntaAdmin(admin.ModelAdmin):
 	list_display = ('pregunta', 'eje', 'estado')
+	search_fields = ['pregunta', ]
 
 
 class EjeAdmin(admin.ModelAdmin):
@@ -24,5 +26,5 @@ class EjeAdmin(admin.ModelAdmin):
 admin.site.register(Distrito)
 admin.site.register(Eje, EjeAdmin)
 admin.site.register(Pregunta, PreguntaAdmin)
-admin.site.register(Articulo)
+admin.site.register(Articulo, ArticuloAdmin)
 admin.site.register(Responsable)

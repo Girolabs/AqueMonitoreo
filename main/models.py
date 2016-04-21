@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from tinymce.models import HTMLField
+
 from ckeditor.fields import RichTextField
 
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -49,7 +49,7 @@ class Eje(models.Model):
 	distrito = models.ForeignKey(Distrito, on_delete=models.CASCADE, related_name='ejes', null=True)
 	nombre = models.CharField(max_length=200, help_text="Complete con un nombre de Eje. Ej: Educacion")
 	breve_explicacion = models.CharField(max_length=200 , blank=True )
-	imagen = models.ImageField("imagen")
+	imagen = models.ImageField("Icono")
 	def _get_total_aprobado(self):
 		"Retorna el total de preguntas Aprobadas del eje"
 		return len(Pregunta.objects.filter(eje_id=self.id, estado = "Aprobado"))
@@ -77,8 +77,8 @@ class Eje(models.Model):
 class Responsable(models.Model):
 	nombre = models.CharField(max_length=200 , blank=True )
 	descripcion = RichTextField(default="", blank=True );
-	logo = models.ImageField("Logo")
-	url = models.URLField()
+	logo = models.ImageField("Logo", blank=True , null=True)
+	url = models.URLField( blank=True , null=True)
 
 	def __unicode__(self):
 		return  self.nombre
@@ -90,14 +90,14 @@ class Pregunta(models.Model):
 	eje = models.ForeignKey(Eje, on_delete=models.CASCADE, related_name='preguntas')	
 	POSIBLES_ESTADOS = (
 	        ('Sin Esdado', 'Sin Estado'),
-			('Aprobado', 'Aprobado'),
-			('No aprobado', 'No aprobado'),
+			('Aprobado', 'Logrado'),
+			('No aprobado', 'No logrado'),
 	)
 	estado = models.CharField(max_length=15,
     						 choices=POSIBLES_ESTADOS, 
     						 default='Sin Estado')
 	respuesta = RichTextField(default="", blank=True , help_text="La respuesta es una respuesta de hasta 200 caracteres");
-	responsables = models.ManyToManyField(Responsable, )
+	responsables = models.ManyToManyField(Responsable,  blank=True , null=True )
 	orden = models.IntegerField(default=1,  help_text="Donde el de orden 0 aparece primero en la lista que  el orden 1")
 	def __unicode__(self):
 		return self.eje.nombre  + "-" + self.pregunta[:50] + "..."
@@ -109,7 +109,7 @@ class Articulo(models.Model):
 	"""docstring for Articulo"""
 	titulo = models.CharField(max_length=500,unique=True, default="")
 	contenido = RichTextUploadingField(default="", blank=True );
-	preguntas =  models.ManyToManyField(Pregunta,related_name="articulos")
+	preguntas =  models.ManyToManyField(Pregunta,related_name="articulos",  null=True, blank=True)
 		
 
 	def _get_url(self):

@@ -57,6 +57,18 @@
           </button>
           <a class="navbar-brand" href="/"> <b>Monitoreo de la Gestión Municipal</b></a>
         </div>
+
+        
+        <div id="navbar" class="navbar-collapse collapse navbar-warning-collapse">  
+         
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#acerca-de">Acerca del Proyecto</a></li>
+             <li><a href="#metodologia">Metodología</a></li>
+            
+            </li>
+          </ul>
+        </div> 
+
         
       </div>
     </nav>
@@ -115,6 +127,31 @@
              url = "/"
              window.location.replace(url + this.value )
             });
+
+          $('.active .toggle-logrado').click(function() {
+
+              $('.active .success').fadeToggle( "fast", "linear", function(){
+                if ($('.toggle-logrado').text() == 'Ocultar Logrados') {
+
+               $('.active .toggle-logrado').text('Mostrar Logrados')
+              }else { $('.active  .toggle-logrado').text('Ocultar Logrados') }
+              } )
+              
+          });
+
+           $('.active  .toggle-nologrado').click(function() {
+
+              $('.active .danger').fadeToggle( "fast", "linear", function(){
+                if ($('.active  .toggle-nologrado').text() == 'Ocultar No Logrados') {
+
+               $('.toggle-nologrado').text('Mostrar No Logrados')
+              } else { $('.active  .toggle-nologrado').text('Ocultar No Logrados') }
+              }  )
+             
+              
+          });
+
+          
 
         </script>
 

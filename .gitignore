@@ -23,4 +23,5 @@ dist
 media/
 static/
 migrations/
+venv/
 aquemonitoreo/settings.py
