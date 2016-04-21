@@ -131,7 +131,7 @@
           $('.toggle-logrado').click(function() {
 
               $('.active .success').fadeToggle( "fast", "linear", function(){
-                if ($('.toggle-logrado').text() == 'Ocultar Logrados') {
+                if ($('.active .toggle-logrado').text() == 'Ocultar Logrados') {
 
                $('.active .toggle-logrado').text('Mostrar Logrados')
               }else { $('.active  .toggle-logrado').text('Ocultar Logrados') }
@@ -144,7 +144,7 @@
               $('.active .danger').fadeToggle( "fast", "linear", function(){
                 if ($('.active  .toggle-nologrado').text() == 'Ocultar No Logrados') {
 
-               $('.toggle-nologrado').text('Mostrar No Logrados')
+               $('.active .toggle-nologrado').text('Mostrar No Logrados')
               } else { $('.active  .toggle-nologrado').text('Ocultar No Logrados') }
               }  )
              
