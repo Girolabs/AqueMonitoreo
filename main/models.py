@@ -33,7 +33,7 @@ class Distrito (models.Model):
 	def _get_total_dias(self):
 		"Retorna el total de dias de todo el mandato"
 		delta2 =   self.periodo_fin - self.periodo_inicio
-		return float(float(self.dias_poder) / float(delta2.days)) #float(self.dias_poder / delta2.days)
+		return delta2.days #float(self.dias_poder / delta2.days)
 	porcentaje_dias = property(_get_total_dias)
 
 	def _get_url(self):
