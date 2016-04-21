@@ -122,6 +122,9 @@
 
           $.material.init();
 
+          $( document ).ready(function() {
+  
+
           $('select').on('change', function() {
              // alert( this.value ); // or $(this).val()
              url = "/"
@@ -131,6 +134,7 @@
           $('.toggle-logrado').click(function() {
 
               $('.active .success').fadeToggle( "fast", "linear", function(){
+
                 $('.active .toggle-logrado').text();
 
                 if ($('.active .toggle-logrado').text() == 'Ocultar Logrados') {
@@ -140,23 +144,29 @@
               
                    }
                 else { 
-                  $('.active  .toggle-logrado').text('Ocultar Logrados'); 
+                  $('.active .toggle-logrado').text('Ocultar Logrados'); 
                 }
               } ) //End Toggle
               
           });
 
            $('.toggle-nologrado').click(function() {
+               $('.active .toggle-logrado').text();
 
               $('.active .danger').fadeToggle( "fast", "linear", function(){
                 if ($('.active  .toggle-nologrado').text() == 'Ocultar No Logrados') {
+                console.log("entre al logrado");
                $('.active .toggle-nologrado').text('Mostrar No Logrados');
+               $('.active .toggle-nologrado').text();
               } else {
-                $('.active  .toggle-nologrado').text('Ocultar No Logrados'); 
+                $('.active .toggle-nologrado').text('Ocultar No Logrados'); 
               }
               }  )             
               
           });
+
+            
+});
 
           
 
