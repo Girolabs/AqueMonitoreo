@@ -133,39 +133,40 @@
 
           $('.toggle-logrado').click(function() {
 
-              $('.active .success').fadeToggle( "fast", "linear", function(){
+              $('.active .success').fadeToggle( "fast", "linear") //End Toggle
+             
 
                 $('.active .toggle-logrado').text();
 
                 if ($('.active .toggle-logrado').text() == 'Ocultar Logrados') {
                   console.log("entre al logrado");
-                   $('.active .toggle-logrado').text('Mostrar Logrados');
-                   $('.active .toggle-logrado').text();
+                   $(this).text('Mostrar Logrados');
+                   $(this).text();
               
                    }
                 else { 
-                  $('.active .toggle-logrado').text('Ocultar Logrados'); 
+                  $(this).text('Ocultar Logrados'); 
                 }
-              } ) //End Toggle
               
           });
 
            $('.toggle-nologrado').click(function() {
                $('.active .toggle-logrado').text();
 
-              $('.active .danger').fadeToggle( "fast", "linear", function(){
-                if ($('.active  .toggle-nologrado').text() == 'Ocultar No Logrados') {
-                console.log("entre al logrado");
-               $('.active .toggle-nologrado').text('Mostrar No Logrados');
+              $('.active .danger').fadeToggle( "fast", "linear") 
+
+              if ($('.active  .toggle-nologrado').text() == 'Ocultar No Logrados') {
+                console.log("entre al NO logrado");
+               $(this).text('Mostrar No Logrados');
                $('.active .toggle-nologrado').text();
               } else {
-                $('.active .toggle-nologrado').text('Ocultar No Logrados'); 
+                $(this).text('Ocultar No Logrados'); 
               }
-              }  )             
+                        
               
           });
 
-            
+
 });
 
           
