@@ -8,7 +8,7 @@ urlpatterns = [
 
     url(r'^articulo/(?P<articulo_id>[-\w]+)/$', views.articulo, name='articulo'),
     url(r'^acerca-de', views.acercaDe, name='acercaDe'),
-    url(r'^metodologia/$', views.metodologia, name='metodologia'),
+    url(r'^quienes-somos/$', views.metodologia, name='metodologia'),
     url(r'^(?P<distrito_nombre>\w+)/$', views.distrito, name='distrito'),
 
 ]
