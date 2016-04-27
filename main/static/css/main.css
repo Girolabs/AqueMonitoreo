@@ -120,6 +120,18 @@ max-width: 100%;
 height: auto !important;
 }
 
+.ref h5 {
+    font-size: 9px;
+    margin: 4px;
+    text-align: center;
+}
+
+.col-md-3.ref {
+    height: 15px;
+        margin-bottom: 20px;
+    /* font-size: 13px; */
+}
+
 
 
 @media (max-device-width: 700px) {
