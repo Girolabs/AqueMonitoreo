@@ -87,3 +87,8 @@ def acercaDe(request):
 def metodologia(request):
 	
 	return render_to_response('metodologia.html')
+
+
+def quienesSomos(request):
+	
+	return render_to_response('quienes-somo.html')
