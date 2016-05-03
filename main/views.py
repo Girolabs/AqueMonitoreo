@@ -91,4 +91,4 @@ def metodologia(request):
 
 def quienesSomos(request):
 	
-	return render_to_response('quienes-somo.html')
+	return render_to_response('quienes-somos.html')
