@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^acerca-de', views.acercaDe, name='acercaDe'),
     url(r'^quienes-somos$', views.quienesSomos, name='quienesSomos'),
       url(r'^metodologia$', views.metodologia, name='metodologia'),
-    url(r'^(?P<distrito_nombre>\w+)/$', views.distrito, name='distrito'),
+    url(r'^(?P<distrito_nombre>\w+)$', views.distrito, name='distrito'),
 
 ]
 
