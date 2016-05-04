@@ -47,8 +47,8 @@ def distrito(request, distrito_nombre):
 	lista_eje = Eje.objects.filter(distrito = distrito_principal)
 	lista_pregunta = Pregunta.objects.filter(eje__distrito = distrito_principal)
 	lista_distrito = Distrito.objects.all()
-
-	
+	print "hola"
+	print distrito_principal.nombre
 
 
 	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal}
