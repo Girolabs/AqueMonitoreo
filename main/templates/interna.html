@@ -93,7 +93,9 @@ background: url("{{pregunta.eje.imagen}}");
 								     		 			<div class="responsable">
 								     		 			
 								     		 			<div class="col-md-6">
+								     		 				{% if responsable.logo %}
 								     		 				<img src="{{responsable.logo.url}}" style="width:100px;">
+								     		 					{% endif %}
 								     		 			</div>
 
 								     		 			<div class="col-md-6">
