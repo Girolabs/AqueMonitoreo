@@ -18,5 +18,5 @@ urlpatterns = [
 
 handler400 = 'views.bad_request'
 handler403 = 'views.permission_denied'
-handler404 = 'views.bad_request'
+handler404 = 'views.not_found'
 handler500 = 'views.server_error'
