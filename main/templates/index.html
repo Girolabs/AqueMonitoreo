@@ -27,11 +27,11 @@
               </ul>
             </div> -->
 
-            <div class="form-group">
+            <div class="">
                 <label for="select111" class="col-md-2 control-label">ELEGI TU CIUDAD</label>
 
                 <div class="col-md-10">
-                  <select id="select111" class="form-control">
+                  <select id="select111" class="">
 
                   	{% for distrito in lista_distrito %}
                   			<option value="{{distrito.url}}" {% if distrito.url == distrito_principal.url %} selected {% endif%}> {{distrito.nombre}} </option>
