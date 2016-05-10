@@ -8,8 +8,8 @@
 	<meta property="og:url"           content="http://monitoreo.aquieneselegimos.org.py/articulos/{{articulo.link}}/" />
 	<meta property="og:type"          content="article" />
 	<meta property="og:title"         content="Monitorieo - {{articulo.titulo|striptags}}" />
-	<meta property="og:description"   content="{{articulo.contenido|truncatechars:255}}" />
-	<meta property="og:image"         content="{{pregunta.eje.imagen_destacada.url}}" />
+	<meta property="og:description"   content="{{articulo.contenido | striptags |truncatechars:255}}" />
+	<meta property="og:image"         content="http://monitoreo.aquieneselegimos.org.py/{{pregunta.eje.imagen_destacada.url}}" />
 	<meta property="og:author"         content="https://www.facebook.com/aquieneselegimos/" />
 
 
