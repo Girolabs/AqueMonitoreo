@@ -5,7 +5,7 @@
 {% load staticfiles %}
 
 {% block meta-tags%}
-	<meta property="og:url"           content="http://monitoreo.aquieneselegimos.org.py/articulos/{{articulo.link}}" />
+	<meta property="og:url"           content="http://monitoreo.aquieneselegimos.org.py/articulos/{{articulo.link}}/" />
 	<meta property="og:type"          content="article" />
 	<meta property="og:title"         content="Monitorieo - {{articulo.titulo|striptags}}" />
 	<meta property="og:description"   content="{{articulo.contenido|truncatechars:255}}" />
