@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render, render_to_response, get_object_or_404
 from django.http import HttpResponse,Http404
 from django.template import RequestContext
 
@@ -43,7 +43,7 @@ def articulo(request, articulo_id):
 
 def distrito(request, distrito_nombre):
 
-	distrito_principal =  Distrito.objects.get_object_or_404(nombre = distrito_nombre.replace("_"," ")) 
+	distrito_principal = get_object_or_404(Distrito, nombre = distrito_nombre.replace("_"," ")) 
 	lista_eje = Eje.objects.filter(distrito = distrito_principal)
 	lista_pregunta = Pregunta.objects.filter(eje__distrito = distrito_principal)
 	lista_distrito = Distrito.objects.all()
