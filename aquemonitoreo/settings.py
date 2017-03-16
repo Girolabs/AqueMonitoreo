@@ -25,9 +25,9 @@ SECRET_KEY = '+0s_7p5=1l*il)-_x0m&mmzb4)k2074n-1kye)pd4@ly3$(@o+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["monitoreo.aquieneselegimos.org.py","aquieneselegimos.org.py","45.55.93.88","127.0.0.1"]
 
-
+APPEND_SLASH=True
 # Application definition
 
 INSTALLED_APPS = [
