@@ -20,8 +20,6 @@ dist
 *.pyo
 *.tmp*
 *.sqlite3
-media/
-static/
 migrations/
 venv/
 aquemonitoreo/settings.py

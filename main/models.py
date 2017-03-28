@@ -15,7 +15,7 @@ import unicodedata
 from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator, validate_slug
 from django.template.defaultfilters import slugify
-
+import datetime
 
 # Create your models here.
 
@@ -97,8 +97,9 @@ class Pregunta(models.Model):
     						 choices=POSIBLES_ESTADOS, 
     						 default='Sin Estado')
 	respuesta = RichTextField(default="", blank=True , help_text="La respuesta es una respuesta de hasta 200 caracteres");
-	responsables = models.ManyToManyField(Responsable,  blank=True , null=True )
+	responsables = models.ManyToManyField(Responsable,  blank=True )
 	orden = models.IntegerField(default=1,  help_text="Donde el de orden 0 aparece primero en la lista que  el orden 1")
+	anio = models.DateField(default=date.today() ,  help_text="Fecha de la pregunta")
 	def __unicode__(self):
 		return self.eje.nombre  + "-" + self.pregunta[:50] + "..."
 	class Meta:
