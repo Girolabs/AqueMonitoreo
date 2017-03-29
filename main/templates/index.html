@@ -8,6 +8,14 @@
     background-color: #FFE422;
 }
 
+.nav-tabs.ejes{
+    background: #f47a2f;
+}
+
+.nav-tabs.visualizacion{
+    background: #9E9E9E;
+}
+
 
 #treemap {
   width: 100%;
@@ -73,7 +81,7 @@
               </ul>
             </div> -->
 
-            <div class="">
+            <div class="col-md-12">
                 <label for="select111" class="col-md-2 control-label">ELEGI TU CIUDAD</label>
 
                 <div class="col-md-10">
@@ -86,7 +94,30 @@
                     
                   </select>
                 </div>
-              <span class="material-input"></span></div>
+              <span class="material-input"></span>
+            </div>
+
+            <div class="col-md-12">
+                <label for="select111" class="col-md-2 control-label">Año de control</label>
+
+                <div class="col-md-10">
+                  <select id="select111" class="">
+
+                    
+                        <option value="2016" > 2016 </option>
+                          <option value="2017" > 2017 </option>
+                            <option value="2018" > 2018 </option>
+            
+                    
+                    
+                  </select>
+                </div>
+              <span class="material-input"></span>
+            </div>
+
+            <div class="col-md-12">
+                <a href="javascript:void(0)" class="btn btn-raised btn-sm" style="background: #99113c;color: white;">Ver hitorial Presupuesto y Ejecucion</a>
+            </div>
 
         </div> 
         <div class="col-md-8">
@@ -96,49 +127,37 @@
             <h5></h5>
             <br>
 
-              <div id="treemap"></div>
-       <!--    <div class="progress">
-              <div class="progress-bar progress-bar-striped active" role="progressbar"  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                40%
-              </div>
-            </div> -->
-
-
-     <!--       {% if lista_eje %}
+     <ul class="nav nav-tabs visualizacion nav-justified">
         
-          {% for eje in lista_eje  %}
+              <li class="active"  > <a href="#programa" data-toggle="tab">Presupuesto por programa </a></li>
+               <li class=""  > <a href="#rubro" data-toggle="tab">Presupuesto por Rubro </a></li>
+                <li class=""  > <a href="#ingresos" data-toggle="tab">Estimativos de Ingresos </a></li>
+        
+          </ul>
 
-           <div class="barra-progreso">
-              <div class="col-md-2"><h4 class="progress-label"> {{eje.nombre}} </h4></div>
-              <div class="col-md-10">
-                   <div class="progress">
-                    <div class="progress-bar  {% if eje.porcentaje < 30  %} progress-bar-danger {% endif%} {% if eje.porcentaje > 30 and eje.porcentaje < 60  %} progress-bar-warning {% endif%} {% if  eje.porcentaje > 60 and eje.porcentaje < 80  %} progress-bar-amarillo {% endif%} {% if  eje.porcentaje > 80 and eje.porcentaje %} progress-bar-success {% endif%} progress-bar-striped active" role="progressbar"  aria-valuenow="{{eje.porcentaje}}" aria-valuemin="0" aria-valuemax="100" style="width:{{eje.porcentaje |floatformat:'0'}}%">
-                      {{eje.porcentaje |floatformat:'0'}} %
-                    </div>
-                  </div>
-              </div>
+
+
+          <div class="tab-content">
+            <div id="programa" class="tab-pane fade in active">
+              
+               <div id="treemap"></div>
+                  <a href="javascript:void(0)" class="btn btn-raised btn-sm">Ver Tabla</a>
             </div>
-                
-          {% endfor %}
+            <div id="rubro" class="tab-pane fade">
+              <h3>Presupuesto por Rubro </h3>
+              <p></p>
+            </div>
+            <div id="ingresos" class="tab-pane fade">
+              <h3>Estimativos de Ingresos</h3>
+              <p></p>
+            </div>
+          </div>
+
          
 
-      {% endif %} 
 
-      <h4>Referencias</h4>
-<div class="row">
-      <div class="col-md-8">
-              <div class="col-md-3 ref" style="background:#f44336"><h5>Bajo</h5></div>
-      <div class="col-md-3 ref" style="background:#ff5722"><h5>Regular</h5></div>
-      <div class="col-md-3 ref" style="background:#FFE422"><h5> Medio</h5></div>
-      
-      <div class="col-md-3 ref" style="background:#4caf50"><h5>Alto</h5></div>
-
-      </div>
-</div>-->
       
 
- <a href="javascript:void(0)" class="btn btn-raised btn-sm  toggle-logrado">Mostrar No Logrados</a>
-                            <a href="javascript:void(0)" class="btn btn-raised btn-sm  toggle-nologrado">Mostar Logrados</a>
 
 
 
@@ -154,7 +173,7 @@
 
 
       {% if lista_eje %}
-			    <ul class="nav nav-tabs nav-justified">
+			    <ul class="nav nav-tabs ejes nav-justified">
 			    {% for eje in lista_eje  %}
 			        <li {% if forloop.first %} class="active" {% endif %} >
 
@@ -172,6 +191,10 @@
 
 
           <div id="myTabContent" class="tab-content">
+
+
+ <a href="javascript:void(0)" class="btn btn-raised btn-sm  toggle-logrado">Mostrar No Logrados</a>
+                            <a href="javascript:void(0)" class="btn btn-raised btn-sm  toggle-nologrado">Mostar Logrados</a>
 
           	{% if lista_eje %}
 
