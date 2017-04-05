@@ -153,6 +153,19 @@ select#select111 {
 }
 
 
+select#selectanio {
+    top: 16px;
+    
+    font-weight: 800;
+    position: relative;
+    height: 50px;
+    background: #F47A2F;
+    color: white;
+    border: solid 1px #ddd;
+}
+
+
+
 
 @media (max-device-width: 700px) {
 

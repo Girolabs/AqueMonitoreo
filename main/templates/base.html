@@ -126,7 +126,7 @@
           $( document ).ready(function() {
   
 
-          $('select').on('change', function() {
+          $('#select111').on('change', function() {
              // alert( this.value ); // or $(this).val()
              url = "/"
              window.location.replace(url +"distrito/"  + this.value )
@@ -166,6 +166,22 @@
                         
               
           });
+
+           valoranterior = $( "#selectanio" ).val();
+
+           $( "#selectanio" ).change(function() {
+
+
+
+                anioselect  = $( "#selectanio" ).val()
+                 console.log(anioselect)  ;
+                 $("."+valoranterior).slideToggle();
+                 $("."+anioselect).slideToggle();
+                 valoranterior = $( "#selectanio" ).val();
+
+            });
+
+
 
 
 });

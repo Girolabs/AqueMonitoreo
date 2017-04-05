@@ -10,8 +10,8 @@ import unicodedata
 
 
 def index(request):
-	lista_eje = Eje.objects.filter(distrito__nombre="Asuncion")
-	lista_pregunta = Pregunta.objects.all().order_by('orden')
+	lista_eje = Eje.objects.filter(distrito__nombre="Asuncion" )
+	lista_pregunta = Pregunta.objects.filter(anio__year='2017').order_by('orden')
 	lista_distrito = Distrito.objects.all()
 
 	distrito_principal = lista_distrito.first()

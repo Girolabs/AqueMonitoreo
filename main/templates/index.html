@@ -1,6 +1,7 @@
 
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load date_filter %}
 {% block content%}
 
 <style type="text/css">
@@ -98,15 +99,15 @@
             </div>
 
             <div class="col-md-12">
-                <label for="select111" class="col-md-2 control-label">Año de control</label>
+                <label for="selectanio" class="col-md-2 control-label">Año de control</label>
 
                 <div class="col-md-10">
-                  <select id="select111" class="">
+                  <select id="selectanio" class="">
 
                     
                         <option value="2016" > 2016 </option>
-                          <option value="2017" > 2017 </option>
-                            <option value="2018" > 2018 </option>
+                        <option value="2017" > 2017 </option>
+                        <option value="2018" > 2018 </option>
             
                     
                     
@@ -116,7 +117,7 @@
             </div>
 
             <div class="col-md-12">
-                <a href="javascript:void(0)" class="btn btn-raised btn-sm" style="background: #99113c;color: white;">Ver hitorial Presupuesto y Ejecucion</a>
+                <a href="javascript:void(0)" class="btn btn-raised btn-sm" style="background: #99113c;color: white; ">Ver hitorial Presupuesto y Ejecucion</a>
             </div>
 
         </div> 
@@ -218,12 +219,15 @@
 
 
                                           	{% for pregunta in eje.preguntas.all %}
+
+                                         
+
                                           <tr 
 
                                             {% if pregunta.estado == "Aprobado" %}
-                                                      class="success"
+                                                      class="success {{ pregunta.anio| date:'Y'}}"
                                                   {% elif pregunta.estado == "No aprobado" %}
-                                                      class="danger"
+                                                      class="danger {{ pregunta.anio| date:'Y'}}"
                                                   {% else %}
                                                       remove
                                                   {% endif %}
@@ -232,9 +236,9 @@
 
                                           >
                                           <!--  <td>{{forloop.counter }}</td> -->
-                                            <td> <p><b>{{pregunta.pregunta}}</b> </p>
+                                            <td> <p><b>{{pregunta.pregunta | lower}}</b> </p>
                                             	<p> {{pregunta.respuesta |safe }} </p>
-
+                                                <p><h1>{{  pregunta.anio| date:"Y"}}</h1> </p>
                                             </td>
                                            
 
@@ -253,7 +257,7 @@
                                                {% if pregunta.articulos.all  %}
 
                                                 {% for articulo in pregunta.articulos.all %}
-                                                         <a href="/articulo/{{ articulo.link }}/" class="btn btn-raised btn-primary btn-xs"> Ver Detalles
+                                                         <a href="/articulo/{{ articulo.link }}/" class="btn btn-raised btn-primary btn-xs"> Ver Detalles 
                                                  
                                               </a>
                                                   {% endfor %}
@@ -263,6 +267,7 @@
 
                                             
                                           </tr>
+
                                           {% endfor %}
                                          
                                          
