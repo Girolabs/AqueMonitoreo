@@ -104,10 +104,10 @@
                 <div class="col-md-10">
                   <select id="selectanio" class="">
 
-                    
+                        <option value="2018" > 2015 </option>
                         <option value="2016" > 2016 </option>
                         <option value="2017" > 2017 </option>
-                        <option value="2018" > 2018 </option>
+                        
             
                     
                     
@@ -218,9 +218,9 @@
 
 
 
-                                          	{% for pregunta in eje.preguntas.all %}
+                                          	{% for pregunta in lista_pregunta %}
 
-                                         
+                                         {% if pregunta.eje == eje %}
 
                                           <tr 
 
@@ -267,7 +267,9 @@
 
                                             
                                           </tr>
+                                           {% endif %}
 
+    
                                           {% endfor %}
                                          
                                          
@@ -358,6 +360,10 @@ Con esta iniciativa buscamos generar mayor acceso a la información pública por
 
 
     {% block footer %}
+
+
+
+
        <script src="{% static 'js/underscore.min.js' %}"></script>
      <script src="{% static 'js/d3.min.js' %}"></script>
 
@@ -366,7 +372,8 @@ Con esta iniciativa buscamos generar mayor acceso a la información pública por
 
 <script type="text/javascript">
 
-
+anio = {{ anio }}
+ 
 
 var margin = {top: 20, right: 0, bottom: 0, left: 0},
     width = $("#treemap").width(),

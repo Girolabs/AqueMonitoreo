@@ -9,18 +9,35 @@ import unicodedata
 
 
 
-def index(request):
-	lista_eje = Eje.objects.filter(distrito__nombre="Asuncion" )
-	lista_pregunta = Pregunta.objects.filter(anio__year='2017').order_by('orden')
+
+
+
+def index2(request, anio):
+	lista_eje = Eje.objects.filter(distrito__nombre="Asuncion")
+	if anio.isdigit():		
+		lista_pregunta = Pregunta.objects.filter(anio__year=anio).order_by('orden')
+	else:
+		lista_pregunta = Pregunta.objects.filter(anio__year=2017).order_by('orden')
 	lista_distrito = Distrito.objects.all()
 
 	distrito_principal = lista_distrito.first()
 
 
-	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal}
+	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal, 'anio':anio}
 	return render_to_response('index.html', context)
 # Create your views here.
 
+def index(request):
+	lista_eje = Eje.objects.filter(distrito__nombre="Asuncion")
+	lista_pregunta = Pregunta.objects.filter(anio__year=2017).order_by('orden')
+	lista_distrito = Distrito.objects.all()
+
+	distrito_principal = lista_distrito.first()
+
+
+	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal, 'anio':2017}
+	return render_to_response('index.html', context)
+# Create your views here.
 
 
 def articulo(request, articulo_id):
@@ -41,17 +58,22 @@ def articulo(request, articulo_id):
 
 	return render_to_response('interna.html', context)
 
+def distrito2(request, distrito_nombre, anio ):
+
+	distrito_principal = get_object_or_404(Distrito, nombre = distrito_nombre.replace("_"," ")) 
+	lista_eje = Eje.objects.filter(distrito = distrito_principal)
+	lista_pregunta = Pregunta.objects.filter(eje__distrito = distrito_principal,  anio__year=anio)
+	lista_distrito = Distrito.objects.all()
+	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal, 'anio':anio}
+	return render_to_response('index.html', context)
+
 def distrito(request, distrito_nombre):
 
 	distrito_principal = get_object_or_404(Distrito, nombre = distrito_nombre.replace("_"," ")) 
 	lista_eje = Eje.objects.filter(distrito = distrito_principal)
-	lista_pregunta = Pregunta.objects.filter(eje__distrito = distrito_principal)
+	lista_pregunta = Pregunta.objects.filter(eje__distrito = distrito_principal, anio__year="2017")
 	lista_distrito = Distrito.objects.all()
-	print "hola"
-	print distrito_principal.nombre
-
-
-	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal}
+	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal , 'anio':2017}
 	return render_to_response('index.html', context)
 
 

@@ -118,6 +118,8 @@
         <script src="{% static 'js/main.js' %}"></script>
 
 
+    {% block footer %}
+      {% endblock %}
 
         <script type="text/javascript">
 
@@ -128,9 +130,20 @@
 
           $('#select111').on('change', function() {
              // alert( this.value ); // or $(this).val()
-             url = "/"
-             window.location.replace(url +"distrito/"  + this.value )
+             url = "/";
+
+             window.location.replace(url +"distrito/"  + this.value + "/" + $('#selectanio option:selected').val()  )
             });
+
+
+             $( "#selectanio" ).change(function() {
+                      path_relativo = window.location.pathname
+                    //if (path_relativo.slice(0,5) )
+                      url =  "/";
+                      window.location.replace(url +  "distrito/" +$('#select111 option:selected').val()  + "/" +  this.value)
+
+            });
+
 
           $('.toggle-logrado').click(function() {
 
@@ -167,20 +180,14 @@
               
           });
 
-           valoranterior = $( "#selectanio" ).val();
+          $("#selectanio option").each(function(){
+              if($(this).val()==anio){ // EDITED THIS LINE
+                  $(this).attr("selected","selected");    
+              }
+          });
 
-           $( "#selectanio" ).change(function() {
 
-
-
-                anioselect  = $( "#selectanio" ).val()
-                 console.log(anioselect)  ;
-                 $("."+valoranterior).slideToggle();
-                 $("."+anioselect).slideToggle();
-                 valoranterior = $( "#selectanio" ).val();
-
-            });
-
+        
 
 
 
@@ -206,8 +213,6 @@ $(document).ready(function() {
 
         </script>
 
-    {% block footer %}
-      {% endblock %}
 
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
