@@ -17,7 +17,7 @@ def index2(request, anio):
 	if anio.isdigit():		
 		lista_pregunta = Pregunta.objects.filter(anio__year=anio).order_by('orden')
 	else:
-		lista_pregunta = Pregunta.objects.filter(anio__year=2017).order_by('orden')
+		lista_pregunta = Pregunta.objects.filter(anio__year=2016).order_by('orden')
 	lista_distrito = Distrito.objects.all()
 
 	distrito_principal = lista_distrito.first()
@@ -29,13 +29,13 @@ def index2(request, anio):
 
 def index(request):
 	lista_eje = Eje.objects.filter(distrito__nombre="Asuncion")
-	lista_pregunta = Pregunta.objects.filter(anio__year=2017).order_by('orden')
+	lista_pregunta = Pregunta.objects.filter(anio__year=2016).order_by('orden')
 	lista_distrito = Distrito.objects.all()
 
 	distrito_principal = lista_distrito.first()
 
 
-	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal, 'anio':2017}
+	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal, 'anio':2016}
 	return render_to_response('index.html', context)
 # Create your views here.
 
@@ -71,9 +71,9 @@ def distrito(request, distrito_nombre):
 
 	distrito_principal = get_object_or_404(Distrito, nombre = distrito_nombre.replace("_"," ")) 
 	lista_eje = Eje.objects.filter(distrito = distrito_principal)
-	lista_pregunta = Pregunta.objects.filter(eje__distrito = distrito_principal, anio__year="2017")
+	lista_pregunta = Pregunta.objects.filter(eje__distrito = distrito_principal, anio__year="2016")
 	lista_distrito = Distrito.objects.all()
-	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal , 'anio':2017}
+	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal , 'anio':2016}
 	return render_to_response('index.html', context)
 
 
