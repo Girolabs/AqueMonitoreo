@@ -318,6 +318,28 @@ d3.csv("/static/"+presupuesto+".csv", function(csv_data) { // Traigo el csv
         : d.name;
   }
 
+   function removePopovers () {
+          $('.popover').each(function() {
+            $(this).remove();
+          }); 
+        }
+
+  function showPopover (d) {
+    $(this).popover({
+      placement: 'auto top',
+      container: 'body',
+      trigger: 'manual',
+      html : true,
+      content: function() { 
+      //  console.log(d);
+        return "<h5>"+ d.parent.name+"</h5><hr><br/> <b> " + d.name + 
+              "</b><br/><b>Monto:</b> Gs. " + formatNumber(d.value); ; 
+      }
+    });
+    $(this).popover('show')
+  }
+
+
 
 });
 
