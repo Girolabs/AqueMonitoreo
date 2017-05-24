@@ -5,6 +5,36 @@
    ========================================================================== */
 
 
+body {
+        background-color: #ece5cb !important;
+}
+
+
+.jumbotron {
+    background-color: transparent;
+}
+
+.intro {
+        margin-top: 40px;
+}
+
+h2.main-title {
+    border-bottom: solid 2px #333;
+    color: #333 !important;
+    padding-bottom: 5px;
+}
+
+.table td {
+    padding: 10px 20px !important;
+}
+
+.table th {
+    padding: 0px 17px !important;
+}
+
+div#myTabContent {
+    background: #eeeeee;
+}
 
 
 .progress {
@@ -73,7 +103,7 @@ hr {
 }
 
 .navbar.navbar-warning {
-    background-color: #f47a2f;
+    background-color: black;
     color: rgba(255,255,255, 0.84);
 }
 
@@ -83,11 +113,22 @@ footer .atribucion p {
 }
 
 footer {
-    border-top: solid 1px #333;
+
     padding-top: 10px;
     margin-top: 20px;
 }
 
+.footer {
+    background-color: #5b5a5e;
+    color: white;
+    padding-bottom: 20px;
+}
+
+
+.footer a {
+    color: white;
+    font-weight: bold;
+}
 
 .interna .nav-tabs {
     background: #FFFFFF;

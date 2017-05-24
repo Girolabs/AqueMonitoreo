@@ -64,28 +64,23 @@
   fill: #bbb;
 }
 
+
+.btn.black{
+    background: #2e2e2e !important;
+    color: white !important;
+}
+
 </style>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
+
+      <div class="container intro">
 
         <div class="col-md-4">
-            <img src="http://www.aquieneselegimos.org.py/images/logo.png">
-           <!-- <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Asuncion
-              <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li><a href="#">Fernando de la Mora</a></li>
-                <li><a href="#">Lambare</a></li>
-                <li><a href="#">Luque</a></li>
-              </ul>
-            </div> -->
 
             <div class="col-md-12">
-                <label for="select111" class="col-md-2 control-label">ELEGI TU CIUDAD</label>
-
-                <div class="col-md-10">
+                <label for="select111" class="col-md-3 control-label">ELEGI TU CIUDAD</label>
+                <div class="col-md-9">
                   <select id="select111" class="">
 
                   	{% for distrito in lista_distrito %}
@@ -99,18 +94,13 @@
             </div>
 
             <div class="col-md-12">
-                <label for="selectanio" class="col-md-2 control-label">Año de control</label>
+                <label for="selectanio" class="col-md-3 control-label">Año de control</label>
 
-                <div class="col-md-10">
+                <div class="col-md-9">
                   <select id="selectanio" class="">
-
                         <option value="2018" > 2015 </option>
                         <option value="2016" > 2016 </option>
                         <option value="2017" > 2017 </option>
-                        
-            
-                    
-                    
                   </select>
                 </div>
               <span class="material-input"></span>
@@ -123,38 +113,46 @@
         </div> 
 
 
-       
+      
         <div class="col-md-8">
-            <h1  id="titulo" class="">Monitoreo Municipal</h1>
+          <div class="col-md-4">           
+              <img src="http://www.aquieneselegimos.org.py/images/logo.png" class="img-responsive">
+          </div>
+          <div class="col-md-8">
+             <h1  id="titulo" class="">Monitoreo Municipal</h1>
             <p>Línea de Base monitoreadas por la Sociedad Civil</p>
             <h2> <b> {{distrito_principal.dias_poder}}/{{distrito_principal.porcentaje_dias}} días</b> de Gestión</h2>
-            <h5></h5>
-            <br>
-
-
-       {% if anio == "2017" %}
-<button class="btn btn-sm programa active"  style="background: #99113c;color: white; "> Estimativos de Programa</button>
-<button class="btn btn-sm funcion" style="background: #99113c;color: white; "> Presupuesto por funcion</button>
-<button class="btn btn-sm rubro" style="background: #99113c;color: white; "> Presupuesto por Rubro</button>
-
-
-<div class="treemap" id="treemap"></div>
-
-
-
-
+          </div>
         </div> 
 
-        {% endif %}
-      </div>
+        <div class="row">
+                <div class="col-md-12">
+                
+
+                {% if distrito_principal.nombre == "Asuncion" or   distrito_principal.nombre == "encarnacion" %}
+               {% if anio == "2017"    %}
+                    <h2 class="main-title">Gastos y Presupuestos Municipales</h2>
+                    <button class="btn btn-sm programa active"  style="background: #99113c;color: white; "> Estimativos de Programa</button>
+                    <button class="btn btn-sm ingresos" style="background: #99113c;color: white; "> Ingresos</button>
+                    <button class="btn btn-sm rubro" style="background: #99113c;color: white; "> Presupuesto por Rubro</button>
+                    <div class="treemap" id="treemap"></div>
+                {% endif %}
+                 {% endif %}
+                </div>  
+        </div>
+
     </div>
+ 
 
     <div class="container">
       <div class="row">
       <div class="col-md-12">
 
+       {% if lista_eje %}
+        <h2 class="main-title">Monitoreo Municipal</h2>
+          <a href="javascript:void(0)" class="btn btn-raised btn-sm black toggle-logrado">Mostrar No Logrados</a>
+            <a href="javascript:void(0)" class="btn btn-raised btn-sm black toggle-nologrado">Mostar Logrados</a>
 
-      {% if lista_eje %}
 			    <ul class="nav nav-tabs ejes nav-justified">
 			    {% for eje in lista_eje  %}
 			        <li {% if forloop.first %} class="active" {% endif %} >
@@ -162,21 +160,16 @@
 			           <a href="#{{ eje.id }}" data-toggle="tab">
 			              <div class="imagen-tab"><img class="icono-tab"src="{{eje.imagen.url}}"></div> 
 			              {{eje.nombre}} 
-<!--			              <span class="badge">{{eje.total_aprobado}} /{{eje.total}} </span> -->
-
-						</a>
+						      </a>
 			        </li>
 			    {% endfor %}
 			    </ul>
-
 			{% endif %}
-
 
           <div id="myTabContent" class="tab-content">
 
 
- <a href="javascript:void(0)" class="btn btn-raised btn-sm  toggle-logrado">Mostrar No Logrados</a>
-                            <a href="javascript:void(0)" class="btn btn-raised btn-sm  toggle-nologrado">Mostar Logrados</a>
+            
 
           	{% if lista_eje %}
 
@@ -188,18 +181,14 @@
                            
                                           <thead>
 	                                          <tr>
-	                                           <!-- <th >#</th> -->
+	                                        
 	                                            <th>Pregunta</th>
 	                                            <th >Logrado?</th>
 	                                           
 	                                          </tr>
                                           </thead>
                                           <tbody>
-
-
-
-
-                                          	{% for pregunta in lista_pregunta %}
+                                    {% for pregunta in lista_pregunta %}
 
                                          {% if pregunta.eje == eje %}
 
@@ -282,8 +271,8 @@
 
           <p>
               El área de comunicación del CIRD inició desde el año 2006 <b>"A Quiénes Elegimos"</b>, un proyecto de transparencia electoral enfocado a generar información para la ciudadanía sobre los candidatos a las elecciones municipales. Este proyecto extendió su trabajo durante estos años con el objetivo también de realizar un seguimiento a las autoridades electas y designadas de diferentes Poderes del Estado.
-Con esta iniciativa buscamos generar mayor acceso a la información pública por parte de la ciudadanía, fortalecer el proceso democrático en Paraguay y promover el voto informado. La transparencia y la responsabilidad en el ejercicio de la función pública son pilares fundamentales de la democracia.
-“A Quiénes Elegimos” pone a disposición un Banco de Datos de carácter público donde los ciudadanos pueden informarse acerca de los candidatos y autoridades electas y designadas, sus trayectorias y propuestas con el objetivo de realizar un seguimiento del cumplimento de las promesas electorales.
+              Con esta iniciativa buscamos generar mayor acceso a la información pública por parte de la ciudadanía, fortalecer el proceso democrático en Paraguay y promover el voto informado. La transparencia y la responsabilidad en el ejercicio de la función pública son pilares fundamentales de la democracia.
+              “A Quiénes Elegimos” pone a disposición un Banco de Datos de carácter público donde los ciudadanos pueden informarse acerca de los candidatos y autoridades electas y designadas, sus trayectorias y propuestas con el objetivo de realizar un seguimiento del cumplimento de las promesas electorales.
 
           </p>  
 
@@ -393,26 +382,26 @@ Treemap($('#sel2 option:selected').text());
  <script type="text/javascript">
 $( document ).ready(function() {
 
-Treemap2("2015","presupuesto_programa_2017", "#treemap");  
+Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_programa_2017", "#treemap");  
 
 $(".programa").click(function(){
     console.log("programa");
     $("#treemap").html("");
-      Treemap2("2015","presupuesto_programa_2017", "#treemap");   
+      Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_programa_2017", "#treemap");   
    
   });
 
-$(".funcion").click(function(){
-    console.log("funcion");
+$(".ingresos").click(function(){
+    console.log("ingresos");
     $("#treemap").html("");
- Treemap2("2015","presupuesto_funcion", "#treemap");   
+ Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_ingresos_2017", "#treemap");   
    
   });
 
   $(".rubro").click(function(){
     console.log("rubro");
     $("#treemap").html("");
-     Treemap2("2015","presupuesto_rubro_2017", "#treemap");  
+     Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_rubro_2017", "#treemap");  
    
   })
 });
