@@ -136,6 +136,8 @@
                     <button class="btn btn-sm ingresos" style="background: #99113c;color: white; "> Ingresos</button>
                     <button class="btn btn-sm rubro" style="background: #99113c;color: white; "> Presupuesto por Rubro</button>
                     <div class="treemap" id="treemap"></div>
+
+                    <a href="" class="download"> <button class="btn btn-sm black " > Descargar Datos</button></a>
                 {% endif %}
                  {% endif %}
                 </div>  
@@ -383,25 +385,30 @@ Treemap($('#sel2 option:selected').text());
 $( document ).ready(function() {
 
 Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_programa_2017", "#treemap");  
+  $(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_programa_2017.csv")
 
 $(".programa").click(function(){
     console.log("programa");
     $("#treemap").html("");
       Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_programa_2017", "#treemap");   
+
+      $(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_programa_2017.csv")
    
   });
 
 $(".ingresos").click(function(){
     console.log("ingresos");
     $("#treemap").html("");
- Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_ingresos_2017", "#treemap");   
+ Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_ingresos_2017", "#treemap");  
+   $(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_ingresos_2017.csv") 
    
   });
 
   $(".rubro").click(function(){
     console.log("rubro");
     $("#treemap").html("");
-     Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_rubro_2017", "#treemap");  
+     Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_rubro_2017", "#treemap");
+      $(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_rubro_2017.csv")  
    
   })
 });
