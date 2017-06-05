@@ -3,4 +3,7 @@ Pillow==3.1.1
 Unidecode==0.04.19
 argparse==1.2.1
 django-ckeditor==5.0.3
+django-constance==2.0.0
+django-picklefield==0.3.2
+psycopg2==2.6.1
 wsgiref==0.1.2

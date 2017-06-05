@@ -132,6 +132,45 @@ class Articulo(models.Model):
         
 		super(Articulo, self).save(*args, **kwargs)
 
+ANIOS = (
+	        ('2005', '2005'),
+			('2006', '2006'),
+			('2007', '2007'),
+			('2008', '2008'),
+			('2009', '2009'),
+			('2010', '2010'),
+			('2011', '2011'),
+			('2012', '2012'),
+			('2013', '2013'),
+			('2014', '2014'),
+			('2015', '2015'),
+			('2016', '2016'),
+			('2017', '2017'),
+			('2018', '2018'),
+			('2019', '2019'),
+			('2020', '2020'),
+			('2020', '2020'),
+	)
 
 
+TIPO_PRESUPUESTO = (
+	        ('por_programa' , 'Por Programa' ),
+			('por_rubro', 'Por Rubro' ),
+			('presupuesto_ejecutado', 'Presupuesto Ejecutado'),
+			('ingresos', 'Ingresos'),
+			
+	)
    
+
+class Presupuesto(models.Model):
+	"""docstring for Presupuesto"""
+	distrito =  models.ForeignKey(Distrito,related_name="distritos", default="",  null=False, blank=False)
+	anio = models.CharField(max_length=15,
+    						 choices=ANIOS, default="2017")
+	documento_csv = models.FileField()
+	document_pdf = models.FileField(null=True, blank=True)
+	tipo_presupuesto = models.CharField(max_length=80,
+    						 choices=TIPO_PRESUPUESTO)
+	def __unicode__(self):
+		return self.distrito.nombre  + "-" + self.anio + "-" + self.tipo_presupuesto 
+		

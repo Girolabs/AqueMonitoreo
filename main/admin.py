@@ -5,7 +5,7 @@ from django.contrib import admin
 
 
 
-from .models import Eje,Pregunta, Articulo, Distrito, Responsable
+from .models import Eje,Pregunta, Articulo, Distrito, Responsable, Presupuesto
 
 
 class ArticuloAdmin(admin.ModelAdmin):
@@ -28,3 +28,4 @@ admin.site.register(Eje, EjeAdmin)
 admin.site.register(Pregunta, PreguntaAdmin)
 admin.site.register(Articulo, ArticuloAdmin)
 admin.site.register(Responsable)
+admin.site.register(Presupuesto)

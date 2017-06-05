@@ -85,7 +85,7 @@ grandparent.append("text")
 /*** traigo los datos y dibujo el treemap ***/
 /*********************************/
 
-d3.csv("/static/"+presupuesto+".csv", function(csv_data) { // Traigo el csv
+d3.csv(presupuesto, function(csv_data) { // Traigo el csv
 
 
     historic_csv_data =  csv_data;

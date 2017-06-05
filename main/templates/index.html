@@ -70,6 +70,16 @@
     color: white !important;
 }
 
+
+.btn-granate {
+
+  background: #99113c;color: white;
+
+}
+
+.btn.btn-raised.btn-granate,.btn.btn-raised.btn-granate:hover, .btn.btn-raised.btn-granate:focus {
+    background: rgba(153, 17, 60, 0.58);
+}
 </style>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -128,18 +138,31 @@
         <div class="row">
                 <div class="col-md-12">
                 
+              {% if presupuestos   %}
+                  <h2 class="main-title">Gastos y Presupuestos Municipales</h2>
 
-                {% if distrito_principal.nombre == "Asuncion" or   distrito_principal.nombre == "Encarnacion" %}
-               {% if anio == "2017"    %}
-                    <h2 class="main-title">Gastos y Presupuestos Municipales</h2>
-                    <button class="btn btn-sm programa active"  style="background: #99113c;color: white; "> Estimativos de Programa</button>
-                    <button class="btn btn-sm ingresos" style="background: #99113c;color: white; "> Ingresos</button>
-                    <button class="btn btn-sm rubro" style="background: #99113c;color: white; "> Presupuesto por Rubro</button>
-                    <div class="treemap" id="treemap"></div>
+                        {% for presupuesto in presupuestos %}
+                              {% if presupuesto.tipo_presupuesto == "ingresos" %}
+                                     <button class="btn btn-sm btn-granate ingresos vis-boton" data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.document_pdf}}"> Ingresos</button>
+                              {% endif %}
+                              
+                              {% if presupuesto.tipo_presupuesto == "por_rubro" %}
+                                    <button class="btn btn-sm  btn-granate rubro vis-boton " data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.document_pdf}}" > Presupuesto por Rubro</button>
+                              {% endif %}
+                              
+                              {% if presupuesto.tipo_presupuesto == "por_programa" %}
+                                   <button class="btn btn-sm btn-granate programa btn-raised vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.document_pdf}}"> Presupuesto por Programa</button>
+                              {% endif %}
+                        {% endfor %}
+                  <div class="treemap" id="treemap"></div>
+                  <a href="" class="download"> <button class="btn btn-sm black " > Descargar Datos</button></a>
+                  <a href="" class="download-pdf"> <button class="btn btn-sm black " > Descargar Reporte Oficial</button></a>
+              {% endif %}
+                
 
-                    <a href="" class="download"> <button class="btn btn-sm black " > Descargar Datos</button></a>
-                {% endif %}
-                 {% endif %}
+
+
+
                 </div>  
         </div>
 
@@ -267,6 +290,7 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-8">
+
           <h2>¿Quiénes somos?</h2>
           <p>El Centro de Información y Recursos para el Desarrollo, CIRD (www.cird.org.py) es una fundación comunitaria que trabaja desde el año 1988 con el fin de apoyar a las organizaciones de la sociedad civil, en acciones que apuntan a propiciar la participación ciudadana en el proceso de la toma de decisión pública, para fomentar un cambio positivo y sostenido en el país.
           </p>
@@ -284,7 +308,7 @@
                 <ul>
 
                   <li><a href="">Fundación CIRD</a></li>
-                  <li><a href="">reAcción</a></li>
+               
                   <li>Con la cooperación de:<br>
  <a href="">Fundación Nacional para la Democracia (NED)</a></li>
                 </ul>
@@ -384,12 +408,16 @@ Treemap($('#sel2 option:selected').text());
  <script type="text/javascript">
 $( document ).ready(function() {
 
-Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_programa_2017", "#treemap");  
-  $(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_programa_2017.csv")
+//Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_programa_2017", "#treemap");  
+//$(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_programa_2017.csv")
 
+anio = {{anio}}
+/*
 $(".programa").click(function(){
     console.log("programa");
     $("#treemap").html("");
+    $(".btn-granate").removeClass("btn-raised");
+    $(this).addClass("btn-raised");
       Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_programa_2017", "#treemap");   
 
       $(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_programa_2017.csv")
@@ -399,19 +427,46 @@ $(".programa").click(function(){
 $(".ingresos").click(function(){
     console.log("ingresos");
     $("#treemap").html("");
- Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_ingresos_2017", "#treemap");  
+    $(".btn-granate").removeClass("btn-raised");
+    $(this).addClass("btn-raised");
+    Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_ingresos_2017", "#treemap");  
    $(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_ingresos_2017.csv") 
    
   });
 
-  $(".rubro").click(function(){
+$(".rubro").click(function(){
     console.log("rubro");
     $("#treemap").html("");
+    $(".btn-granate").removeClass("btn-raised");
+    $(this).addClass("btn-raised");
      Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_rubro_2017", "#treemap");
       $(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_rubro_2017.csv")  
    
   })
-});
+*/
+
+
+
+$(".vis-boton").click(function(){
+   
+    $("#treemap").html("");
+    $(".btn-granate").removeClass("btn-raised");
+    $(this).addClass("btn-raised");
+    archivo_csv = $(this).data("archivo");
+    archivo_pdf =$(this).data("pdf");
+      Treemap2(anio, archivo_csv , "#treemap");   
+
+      $(".download").attr("href", archivo_csv)
+        $(".download-pdf").attr("href", archivo_pdf)
+   
+  });
+
+$(".vis-boton").first().addClass("btn-raised");
+Treemap2(anio,$(".vis-boton").first().data("archivo"), "#treemap");  
+$(".download").attr("href", $(".vis-boton").first().data("archivo"))
+
+
+});// END CONSOLE READY
 
 
 
