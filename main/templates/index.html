@@ -143,15 +143,17 @@
 
                         {% for presupuesto in presupuestos %}
                               {% if presupuesto.tipo_presupuesto == "ingresos" %}
-                                     <button class="btn btn-sm btn-granate ingresos vis-boton" data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.document_pdf.url}}"> Ingresos</button>
+                                     <button class="btn btn-sm btn-granate ingresos vis-boton" data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"> Ingresos</button>
                               {% endif %}
                               
                               {% if presupuesto.tipo_presupuesto == "por_rubro" %}
-                                    <button class="btn btn-sm  btn-granate rubro vis-boton " data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.document_pdf.url}}" > Presupuesto por Rubro</button>
+                                    <button class="btn btn-sm  btn-granate rubro vis-boton " data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"> Presupuesto por Rubro</button>
                               {% endif %}
                               
+
+
                               {% if presupuesto.tipo_presupuesto == "por_programa" %}
-                                   <button class="btn btn-sm btn-granate programa btn-raised vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.document_pdf.url}}"> Presupuesto por Programa</button>
+                                   <button class="btn btn-sm btn-granate programa btn-raised vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"> Presupuesto por Programa</button>
                               {% endif %}
                         {% endfor %}
                   <div class="treemap" id="treemap"></div>
@@ -419,6 +421,9 @@ $(".vis-boton").click(function(){
 $(".vis-boton").first().addClass("btn-raised");
 Treemap2(anio,$(".vis-boton").first().data("archivo"), "#treemap");  
 $(".download").attr("href", $(".vis-boton").first().data("archivo"))
+
+
+        $(".download-pdf").attr("href", $(".vis-boton").first().data("pdf"))
 
 
 });// END CONSOLE READY
