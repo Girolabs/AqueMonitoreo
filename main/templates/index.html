@@ -143,15 +143,15 @@
 
                         {% for presupuesto in presupuestos %}
                               {% if presupuesto.tipo_presupuesto == "ingresos" %}
-                                     <button class="btn btn-sm btn-granate ingresos vis-boton" data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.documento_pdf.url}}"> Ingresos</button>
+                                     <button class="btn btn-sm btn-granate ingresos vis-boton" data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.document_pdf.url}}"> Ingresos</button>
                               {% endif %}
                               
                               {% if presupuesto.tipo_presupuesto == "por_rubro" %}
-                                    <button class="btn btn-sm  btn-granate rubro vis-boton " data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.documento_pdf.url}}" > Presupuesto por Rubro</button>
+                                    <button class="btn btn-sm  btn-granate rubro vis-boton " data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.document_pdf.url}}" > Presupuesto por Rubro</button>
                               {% endif %}
                               
                               {% if presupuesto.tipo_presupuesto == "por_programa" %}
-                                   <button class="btn btn-sm btn-granate programa btn-raised vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.documento_pdf.url}}"> Presupuesto por Programa</button>
+                                   <button class="btn btn-sm btn-granate programa btn-raised vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{{presupuesto.document_pdf.url}}"> Presupuesto por Programa</button>
                               {% endif %}
                         {% endfor %}
                   <div class="treemap" id="treemap"></div>
