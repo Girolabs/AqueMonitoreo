@@ -1,0 +1,111 @@
+
+
+
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block meta-tags%}
+	<meta property="og:url"           content="http://monitoreo.aquieneselegimos.org.py/articulos/{{articulo.link}}" />
+	<meta property="og:type"          content="article" />
+	<meta property="og:title"         content="Monitorieo - {{articulo.titulo|striptags}}" />
+	<meta property="og:description"   content="{{articulo.contenido|truncatechars:255}}" />
+	<meta property="og:image"         content="{{pregunta.eje.imagen_destacada.url}}" />
+	<meta property="og:author"         content="https://www.facebook.com/aquieneselegimos/" />
+
+
+
+{% endblock %}
+
+{% block bodybegin %}
+
+     	<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=415575505224647";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+{% endblock %}
+{% block content%}
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5&appId=415575505224647";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<style type="text/css">
+
+.interna  .panel-heading {
+
+background: url("{{pregunta.eje.imagen}}");
+
+}
+
+.interna  .panel.panel-danger > .panel-heading {
+  background: url("{{pregunta.eje.imagen_destacada.url}}");
+  height: 250px;
+    padding: 153px 0px 0px 40px;
+    background-size: cover;
+}
+
+
+
+</style>
+   
+    <div class="container interna">
+
+    <div class="row">
+
+		<div class="col-md-12">
+				<div class="panel panel-danger">			
+					<h1 style='padding: 37px 17px;padding-bottom: 0px;'>Informes </h1>
+
+				
+				 	<div class="panel-body">
+				    
+				 			<div class="contenido">
+
+				 				{{config.INFORMES| safe}}
+
+				 				
+				     
+				     		</div>
+
+
+				     		 		<hr>
+
+				     		 		
+				     		 	
+          		
+
+				     		 		
+				     		 		
+
+
+							<div class="fb-comments" data-width="100%"data-href="http://aquieneselegimos.org.py" data-numposts="5"></div>
+
+				  </div>
+				</div>
+
+		</div>	
+
+
+		
+
+    </div>
+     </div>
+
+
+         
+
+      
+
+     
+
+     {% endblock %}

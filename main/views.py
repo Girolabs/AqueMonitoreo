@@ -135,3 +135,7 @@ def metodologia(request):
 def quienesSomos(request):
 	context = {'config':config}
 	return render_to_response('quienes-somos.html', context)
+
+def informes(request):
+	context = {'config':config}
+	return render_to_response('informes.html', context)
