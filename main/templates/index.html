@@ -110,7 +110,7 @@
                   <select id="selectanio" class="">
                     
                         <option value="2016" > 2016 </option>
-                        <option value="2017" > 2017 </option>
+                        <option value="2017" selected> 2017 </option>
                   </select>
                 </div>
               <span class="material-input"></span>
@@ -291,60 +291,15 @@
       <div class="row">
         <div class="col-md-8">
 
-          <h2>¿Quiénes somos?</h2>
-          <p>El Centro de Información y Recursos para el Desarrollo, CIRD (www.cird.org.py) es una fundación comunitaria que trabaja desde el año 1988 con el fin de apoyar a las organizaciones de la sociedad civil, en acciones que apuntan a propiciar la participación ciudadana en el proceso de la toma de decisión pública, para fomentar un cambio positivo y sostenido en el país.
-          </p>
+          {{config.QUIENES_SOMOS_PORTADA |safe}}
 
-          <p>
-              El área de comunicación del CIRD inició desde el año 2006 <b>"A Quiénes Elegimos"</b>, un proyecto de transparencia electoral enfocado a generar información para la ciudadanía sobre los candidatos a las elecciones municipales. Este proyecto extendió su trabajo durante estos años con el objetivo también de realizar un seguimiento a las autoridades electas y designadas de diferentes Poderes del Estado.
-              Con esta iniciativa buscamos generar mayor acceso a la información pública por parte de la ciudadanía, fortalecer el proceso democrático en Paraguay y promover el voto informado. La transparencia y la responsabilidad en el ejercicio de la función pública son pilares fundamentales de la democracia.
-              “A Quiénes Elegimos” pone a disposición un Banco de Datos de carácter público donde los ciudadanos pueden informarse acerca de los candidatos y autoridades electas y designadas, sus trayectorias y propuestas con el objetivo de realizar un seguimiento del cumplimento de las promesas electorales.
-
-          </p>  
-
-          <p>
-                A quiénes elegimos es impulsado actualmente por:
-
-                <ul>
-
-                  <li><a href="">Fundación CIRD</a></li>
-               
-                  <li>Con la cooperación de:<br>
- <a href="">Fundación Nacional para la Democracia (NED)</a></li>
-                </ul>
-
-
-          </p>
-        
+         
         </div>
        
         <div class="col-md-4">
-          <h2>¿Quién más nos ayuda?</h2>
-          <h4>Asuncion</h4>
-          <ul>
-             
-             <li>Fundación Saraki</li>
-             <li> Red Paraguaya por Ciudades Sustentables</li>
-             <li>  Enfoque Niñez Lazos para Crecer</li>
-             <li> Incubadora de Líderes (INLID)</li>
-             <li> Observatorio de Veeduría y Control Ciudadano (FEDEM – Tierra Nueva)</li> 
-     
-      
-      
- 
-      
 
-          </ul>
-
-          <h4>Ciudad del Este</h4>
-          <ul>
-            
- 
-              <li> Asociación de Impedidos Físicos del Alto Paraná (AIFAP)</li>
-              <li> Alianza Impulsora de Gobierno Abierto (AIGA)  </li>
-              <li>Fundación Dequení.</li>
-
-          </ul> 
+          {{config.QUIEN_NOS_AYUDA |safe}}
+          
         
         </div>
       </div>

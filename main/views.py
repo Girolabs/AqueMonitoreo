@@ -34,7 +34,7 @@ from constance import config
 
 def index(request):
 	lista_eje = Eje.objects.filter(distrito__nombre="Asuncion")
-	lista_pregunta = Pregunta.objects.filter(anio__year=2016).order_by('orden')
+	lista_pregunta = Pregunta.objects.filter(anio__year=2017).order_by('orden')
 	lista_distrito = Distrito.objects.all()
 
 	distrito_principal = lista_distrito.first()
@@ -42,7 +42,7 @@ def index(request):
 	presupuestos = Presupuesto.objects.filter(distrito__nombre="Asuncion",anio="2017")
 
 	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal,
-	 'anio':2016 ,  'presupuestos':presupuestos ,'config':config}
+	 'anio':2017 ,  'presupuestos':presupuestos ,'config':config}
 	return render_to_response('index.html', context)
 # Create your views here.
 
@@ -52,7 +52,10 @@ def distrito2(request, distrito_nombre, anio ):
 	lista_eje = Eje.objects.filter(distrito = distrito_principal)
 	lista_pregunta = Pregunta.objects.filter(eje__distrito = distrito_principal,  anio__year=anio)
 	lista_distrito = Distrito.objects.all()
-	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal, 'anio':anio}
+	presupuestos = Presupuesto.objects.filter(distrito=distrito_principal,anio=anio)
+	print presupuestos
+	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 
+	'distrito_principal':distrito_principal, 'anio':anio, 'presupuestos':presupuestos, 'config':config }
 	return render_to_response('index.html', context)
 
 # def distrito(request, distrito_nombre):
