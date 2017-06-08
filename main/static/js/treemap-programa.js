@@ -93,13 +93,51 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
     /* csv_data = csv_data.filter(function (el) {
     return el.anho == anio;
     });*/
-    // Add, remove or change the key values to change the hierarchy. 
-    nested_data = d3.nest()
-       // .key(function(d)  { return d.anho; })
+    console.log("hola");
+    console.log(historic_csv_data);
+    historic_csv_data[0]
+
+    
+
+
+    if ('nivel4' in historic_csv_data[0])
+    {
+      console.log("nivel4");
+   nested_data = d3.nest() 
         .key(function(d)  { return d.nivel1 ; })
         .key(function(d)  { return d.nivel2 ; })
-        //.key(function(d)  { return d.nivel3; })
-        .entries(csv_data);     
+        .key(function(d)  { return d.nivel3 ; })
+        .key(function(d)  { return d.nivel4 ; })      
+        .entries(csv_data);  
+    }
+    else if ('nivel3' in historic_csv_data[0])
+    {
+      console.log("nivel3");
+      nested_data = d3.nest() 
+        .key(function(d)  { return d.nivel1 ; })
+        .key(function(d)  { return d.nivel2 ; })
+         .key(function(d)  { return d.nivel3 ; })   
+
+        .entries(csv_data);  
+    }
+    else if ('nivel2' in historic_csv_data[0])
+    {
+      console.log("nivel2");
+      nested_data = d3.nest() 
+        .key(function(d)  { return d.nivel1 ; })
+        .key(function(d)  { return d.nivel2 ; })      
+        .entries(csv_data);  
+    }
+
+  
+  
+
+     
+    // Add, remove or change the key values to change the hierarchy. 
+   /* nested_data = d3.nest() 
+        .key(function(d)  { return d.nivel1 ; })
+        .key(function(d)  { return d.nivel2 ; })      
+        .entries(csv_data);     */
 
     console.log(nested_data);
 
@@ -190,22 +228,7 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
     });
 
 
-    prueba = historic_csv_data.filter(function (el) {
 
-    return el.nivel1 ==  d.name ||  el.nivel2 ==  d.name //||  el.nivel ==  d.name;
-    // return el.programa ==  d.name ||  el.subprograma ==  d.name ||  el.nivel ==  d.name;
-    });
-
-
-
-    prueba1 = d3.nest()
-        .key(function(d)  { return d.nivel1; })
-        .key(function(d)  { return d.nivel2; })
-        .entries(prueba);
-    prueba1 = reSortRoot(prueba1,"CAPITAL");
-
-    console.log("prueba");
-    console.log(prueba1);
     var g1 = svg.insert("g", ".grandparent")
         .datum(d)
         .attr("class", "depth");
