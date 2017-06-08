@@ -73,7 +73,7 @@
 
 .btn-granate {
 
-  background: #99113c;color: white;
+  background: #99113c;color: white !important;
 
 }
 
@@ -153,7 +153,7 @@
 
 
                               {% if presupuesto.tipo_presupuesto == "por_programa" %}
-                                   <button class="btn btn-sm btn-granate programa btn-raised vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"> Presupuesto por Programa</button>
+                                   <button class="btn btn-sm btn-granate programa vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"> Presupuesto por Programa</button>
                               {% endif %}
                         {% endfor %}
                   <div class="treemap" id="treemap"></div>
