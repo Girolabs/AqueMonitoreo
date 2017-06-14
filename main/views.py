@@ -39,7 +39,7 @@ def index(request):
 
 	distrito_principal = lista_distrito.first()
 
-	presupuestos = Presupuesto.objects.filter(distrito__nombre="Asuncion",anio="2017")
+	presupuestos = Presupuesto.objects.filter(distrito__nombre="Asuncion",anio="2017").order_by('tipo_presupuesto')
 
 	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal,
 	 'anio':2017 ,  'presupuestos':presupuestos ,'config':config}
@@ -52,7 +52,7 @@ def distrito2(request, distrito_nombre, anio ):
 	lista_eje = Eje.objects.filter(distrito = distrito_principal)
 	lista_pregunta = Pregunta.objects.filter(eje__distrito = distrito_principal,  anio__year=anio)
 	lista_distrito = Distrito.objects.all()
-	presupuestos = Presupuesto.objects.filter(distrito=distrito_principal,anio=anio)
+	presupuestos = Presupuesto.objects.filter(distrito=distrito_principal,anio=anio).order_by('tipo_presupuesto')
 	print presupuestos
 	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 
 	'distrito_principal':distrito_principal, 'anio':anio, 'presupuestos':presupuestos, 'config':config }

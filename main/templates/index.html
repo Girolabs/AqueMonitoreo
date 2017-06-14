@@ -80,7 +80,51 @@
 .btn.btn-raised.btn-granate,.btn.btn-raised.btn-granate:hover, .btn.btn-raised.btn-granate:focus {
     background: rgba(153, 17, 60, 0.58);
 }
+
+#tabla {
+  background: white;
+}
+
+#tabla_wrapper {
+    
+}
+
+#tabla thead tr {
+    height: 40px;
+}
+
+#tabla_wrapper input.form-control.input-sm {
+    border-bottom: solid 2px #99113c;
+}
+
+#tabla_filter label {
+    color: #99113c;
+}
+
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #f47a2f;
+    border-color: #f47a2f;
+}
+
+.pagination>li>a, .pagination>li>span {
+  color: #f47a2f;
+}
+
+
 </style>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+
+
+
+
+
+
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
 
@@ -156,10 +200,37 @@
                                    <button class="btn btn-sm btn-granate programa vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"> Presupuesto por Programa</button>
                               {% endif %}
                         {% endfor %}
-                  <div class="treemap" id="treemap"></div>
+
+               
+                   
+
+                      <div class="row">
+                          <div class="col-md-12">
+                                     <div class="treemap" id="treemap"></div>
+                          </div>
+
+                      </div>
+           
+                
+                  
                   <a href="" class="download"> <button class="btn btn-sm black " > Descargar Datos</button></a>
                   <a href="" class="download-pdf"> <button class="btn btn-sm black " > Descargar Reporte Oficial</button></a>
+
+                     <div class="row">
+
+                      <div class="col-md-12">
+                      <a  class="ver-datos "> <button class="btn btn-sm black " > Ver Datos</button></a>
+                      <a  class="ocultar-datos hide "> <button class="btn btn-sm black " > Ocultar Datos</button></a>
+                       <table id="tabla" class="table table-striped table-bordered" cellspacing="0" width="100%"></table>
+                    </div> 
+
+                  </div>
+
               {% endif %}
+
+            
+   
+</table>
                 
 
 
@@ -313,7 +384,11 @@
 
 
     {% block footer %}
+<script type="text/javascript" charset="utf8" src="{% static 'js/jquery.csv.min.js' %}"></script>
+  
+<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
 
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
 
 
 
@@ -325,32 +400,12 @@
 
 <script type="text/javascript">
 
-anio = {{ anio }}
- 
 
-
-
-
-
-
-
-
-    $( "#sel2" ).change(function(){
-
-
-$("#treemap .depth").remove();
-Treemap($('#sel2 option:selected').text());
-   
-
-
-   $(".rubro").click( function(){
-
- 
-
-   }  )
-
-
-   
+$( "#sel2" ).change(function(){
+      $("#treemap .depth").remove();
+      Treemap($('#sel2 option:selected').text());  
+      $(".rubro").click( function(){
+         }  )   
 });
 
 
@@ -360,47 +415,64 @@ Treemap($('#sel2 option:selected').text());
 
 
 
-        <script src="{% static 'js/treemap-programa.js' %}"></script>
+<script src="{% static 'js/treemap-programa.js' %}"></script>
 
  <script type="text/javascript">
+
+anio = {{anio}};
+
+
 $( document ).ready(function() {
 
-//Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_programa_2017", "#treemap");  
-//$(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_programa_2017.csv")
 
-anio = {{anio}}
-/*
-$(".programa").click(function(){
-    console.log("programa");
-    $("#treemap").html("");
-    $(".btn-granate").removeClass("btn-raised");
-    $(this).addClass("btn-raised");
-      Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_programa_2017", "#treemap");   
+function dibujarTabla (argument) {
 
-      $(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_programa_2017.csv")
-   
-  });
+console.log($('#tabla'));
+$.get( archivo_csv, function( data ) {
+            dataSet= $.csv.toObjects(data);
+             if ('nivel4' in historic_csv_data[0]) {
+              columnas = [
+                      { data: "nivel1" , title: "nivel1" },
+                      { data: "nivel2" , title: "nivel2" },
+                     { data: "nivel3" , title: "nivel3" },
+                      { data: "nivel4" , title: "nivel4" },
+                      { data: "monto"  , title: "monto"}                      
+                  ]          
+             }
+             else if ('nivel3' in historic_csv_data[0]) {
+              columnas = [
+                      { data: "nivel1" , title: "nivel1" },
+                      { data: "nivel2" , title: "nivel2" },
+                     { data: "nivel3" , title: "nivel3" },
+                    
+                      { data: "monto"  , title: "monto"}                      
+                  ]          
+             }
+             else if ('nivel2' in historic_csv_data[0]) {
+              columnas = [
+                      { data: "nivel1" , title: "nivel1" },
+                      { data: "nivel2" , title: "nivel2" },
+                    
+                      { data: "monto"  , title: "monto"}                      
+                  ]          
+             }
+            //console.log(dataSet);          
+             dataTabla = $('#tabla').DataTable( {
+                  data: dataSet,
+                    "lengthChange": false,
+                    "language": {
+                                "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                        },
+                  columns: columnas                  
+              } );
 
-$(".ingresos").click(function(){
-    console.log("ingresos");
-    $("#treemap").html("");
-    $(".btn-granate").removeClass("btn-raised");
-    $(this).addClass("btn-raised");
-    Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_ingresos_2017", "#treemap");  
-   $(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_ingresos_2017.csv") 
-   
-  });
+              $("#tabla_wrapper").addClass("hide");
+            
+          });  
+     
+  // body...
+}
 
-$(".rubro").click(function(){
-    console.log("rubro");
-    $("#treemap").html("");
-    $(".btn-granate").removeClass("btn-raised");
-    $(this).addClass("btn-raised");
-     Treemap2("2015","{{distrito_principal.nombre | lower}}_presupuesto_rubro_2017", "#treemap");
-      $(".download").attr("href", "/static/{{distrito_principal.nombre | lower}}_presupuesto_rubro_2017.csv")  
-   
-  })
-*/
 
 
 
@@ -411,19 +483,70 @@ $(".vis-boton").click(function(){
     $(this).addClass("btn-raised");
     archivo_csv = $(this).data("archivo");
     archivo_pdf =$(this).data("pdf");
-      Treemap2(anio, archivo_csv , "#treemap");   
+    Treemap2(anio, archivo_csv , "#treemap");   
 
-      $(".download").attr("href", archivo_csv)
-        $(".download-pdf").attr("href", archivo_pdf)
+    $(".download").attr("href", archivo_csv);
+    $(".download-pdf").attr("href", archivo_pdf);
+
+
+
+  
+    $(".ver-datos").removeClass("hide");
+    $(".ocultar-datos").addClass("hide");
+    dataTabla.destroy();
+      $("#tabla").html("");
+
+    
+
    
   });
 
 $(".vis-boton").first().addClass("btn-raised");
-Treemap2(anio,$(".vis-boton").first().data("archivo"), "#treemap");  
+archivo_csv = $(".vis-boton").first().data("archivo");
+Treemap2(anio,archivo_csv, "#treemap");  
 $(".download").attr("href", $(".vis-boton").first().data("archivo"))
+$(".download-pdf").attr("href", $(".vis-boton").first().data("pdf"))
+
+/*
+dibujarTabla();
+
+ $("#tabla_wrapper").addClass("hide");*/
+
+           // $( "#tabla" ).html( data );
 
 
-        $(".download-pdf").attr("href", $(".vis-boton").first().data("pdf"))
+    
+      
+
+ $(".ver-datos").click(function  () {
+
+            dibujarTabla();
+
+            $("#tabla_wrapper").toggleClass("hide");
+           // $("#treemap").toggleClass("hide");
+            $(".ver-datos").toggleClass("hide");
+            $(".ocultar-datos").toggleClass("hide");
+
+             $("#tabla").removeClass("hide");
+
+           // dibujarTabla()
+            
+   
+ }) // click 
+
+ $(".ocultar-datos").click(function(){
+   // $("#treemap").toggleClass("hide");
+    
+      $(".ver-datos").toggleClass("hide");
+      $(".ocultar-datos").toggleClass("hide");
+
+            dataTabla.destroy();
+            $("#tabla_wrapper").toggleClass("hide");
+            $("#tabla").html("");
+             $("#tabla").toggleClass("hide");
+ })
+
+
 
 
 });// END CONSOLE READY
