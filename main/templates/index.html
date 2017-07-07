@@ -457,7 +457,9 @@ $.get( archivo_csv, function( data ) {
                       { data: "nivel2" , title: "nivel2" },
                      { data: "nivel3" , title: "nivel3" },
                       { data: "nivel4" , title: "nivel4" },
-                      { data: "monto"  , title: "monto"}                      
+                       { data: "monto"  , title: "monto",  render: function ( data, type, full, meta ) {
+                        return Number(data).format(0, 3, '.', ',');
+                      }}                        
                   ]          
              }
              else if ('nivel3' in historic_csv_data[0]) {
@@ -466,7 +468,9 @@ $.get( archivo_csv, function( data ) {
                       { data: "nivel2" , title: "nivel2" },
                      { data: "nivel3" , title: "nivel3" },
                     
-                      { data: "monto"  , title: "monto"}                      
+                       { data: "monto"  , title: "monto",  render: function ( data, type, full, meta ) {
+                        return Number(data).format(0, 3, '.', ',');
+                      }}                        
                   ]          
              }
              else if ('nivel2' in historic_csv_data[0]) {
