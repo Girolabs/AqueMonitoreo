@@ -413,6 +413,27 @@ $( "#sel2" ).change(function(){
 
 </script>
 
+<script type="text/javascript">
+
+
+/**
+ * Number.prototype.format(n, x, s, c)
+ * 
+ * @param integer n: length of decimal
+ * @param integer x: length of whole part
+ * @param mixed   s: sections delimiter
+ * @param mixed   c: decimal delimiter
+ */
+Number.prototype.format = function(n, x, s, c) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+        num = this.toFixed(Math.max(0, ~~n));
+
+    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+};
+
+
+</script>
+
 
 
 <script src="{% static 'js/treemap-programa.js' %}"></script>
@@ -453,16 +474,20 @@ $.get( archivo_csv, function( data ) {
                       { data: "nivel1" , title: "nivel1" },
                       { data: "nivel2" , title: "nivel2" },
                     
-                      { data: "monto"  , title: "monto"}                      
+                      { data: "monto"  , title: "monto",  render: function ( data, type, full, meta ) {
+                        return Number(data).format(0, 3, '.', ',');
+                      }}                      
                   ]          
              }
             //console.log(dataSet);          
              dataTabla = $('#tabla').DataTable( {
                   data: dataSet,
+
                     "lengthChange": false,
                     "language": {
                                 "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
                         },
+
                   columns: columnas                  
               } );
 

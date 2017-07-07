@@ -33,7 +33,7 @@ from constance import config
 # Create your views here.
 
 def index(request):
-	lista_eje = Eje.objects.filter(distrito__nombre="Asuncion")
+	lista_eje = Eje.objects.filter(distrito__nombre="Asunción")
 	lista_pregunta = Pregunta.objects.filter(anio__year=2017).order_by('orden')
 	lista_distrito = Distrito.objects.all()
 

@@ -145,7 +145,7 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
     var root = {};
 
     // Add the data to the tree
-    root.key = "Gasto Total";
+    root.key = "Total";
     root.values = nested_data;
 
     // Change the key names and children values from .next and add values for a chosen column to define the size of the blocks
@@ -201,31 +201,14 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
 
 /* funcion que se llama display */
   function display(d) {
+
+
     grandparent
         .datum(d.parent)
         .on("click", transition)
-      .select("text")
+        .select("text")
         .text(name(d));
-    $(".treemap-datos").html("");
-
-      sum = _.reduce(d._children, function(memo, num){ return memo + num.value; }, 0)
-
-    $(".treemap-titulo").html(d.name);
-    $(".treemap-monto").html("Gs. " + formatNumber(sum));
-
-    console.log(d._children);
-    d._children.reverse().map(function(d){
-
-      if (d.name){         
-     //   var name = d.name.slice(3);
-      }
-      else 
-        {
-          console.log(d);
-      //    var name = d.subprograma.slice(3);
-        }       
-      $(".treemap-datos").append("<tr><td>" + name + "</td><td>"+ formatNumber(d.value) +"</td></tr>");        
-    });
+    console.log(name(d))
 
 
 
@@ -235,8 +218,7 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
 
     var g = g1.selectAll("g")
         .data(d._children)
-      .enter().append("g");   
-
+        .enter().append("g");   
 
     g.filter(function(d) { return d._children; })
         .classed("children", true)
@@ -255,7 +237,7 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
         .style("fill", function(d) { ;return color(d.value); })
         .call(rect)
         .append("title")
-        .text(function(d) { return 'Gs. '+  formatNumber(d.value); })
+        .text(function(d) { return 'Gs. '+  d.value.format(0, 3, '.', ','); })
         ;
 
 
@@ -263,6 +245,8 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
         .attr("dy", ".75em")
         .attr("fill", "rgb(51, 51, 51)")
         .text(function(d) {
+          console.log(name(d))
+          console.log(d)
           if (d.name) {
             texto_cortado =  d.name ;
           }         
@@ -271,26 +255,34 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
           {
             texto_cortado = texto_cortado.slice(0,25) + "...";
           }
+
           //  texto_cortado = texto_cortado.slice(3) + "...";
-          return texto_cortado; 
-        })         
+          return d.name; 
+        })     
+
         
         .attr("font-weight", "bold")
         .style("opacity", function(d) { return x(d.x + d.dx) - x(d.x) > 200 /*this.getComputedTextLength()  */? 1 : 0; })
         .call(text);
-
+   
      g.append("text")
         .attr("dy", "1.85em")
-        .text(function(d) { return 'Gs. '+  formatNumber(d.value); })
+        .text(function(d) { return 'Gs.  '+  d.value.format(0, 3, '.', ','); })
         .style("opacity", function(d) { return x(d.x + d.dx) - x(d.x) > 175 ? 1 : 0; })
         .call(text);
 
 
 
     function transition(d) {
+
+  if (d._children.length > 1) {
       if (transitioning || !d) return;
       transitioning = true;
       //console.log(d._children);
+      console.log(d._children.length);
+
+      
+
       var g2 = display(d),
           t1 = g1.transition().duration(750),
           t2 = g2.transition().duration(750);
@@ -319,6 +311,8 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
         svg.style("shape-rendering", "crispEdges");
         transitioning = false;
       });
+
+    }//end IF children Lenght
     }//end transition
 
     return g;
@@ -354,9 +348,9 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
       trigger: 'manual',
       html : true,
       content: function() { 
-      //  console.log(d);
+       // console.log(d);
         return "<h5>"+ d.parent.name+"</h5><hr><br/> <b> " + d.name + 
-              "</b><br/><b>Monto:</b> Gs. " + formatNumber(d.value); ; 
+              "</b><br/><b>Monto:</b> Gs. " + d.value.format(0, 3, '.', ','); ; 
       }
     });
     $(this).popover('show')
