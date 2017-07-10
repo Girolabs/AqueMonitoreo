@@ -8,7 +8,7 @@ from models import Eje, Pregunta, Distrito,Articulo,Presupuesto
 import unicodedata
 
 from constance import config 
-
+from django.db.models import Count
 
 
 
@@ -38,11 +38,11 @@ def index(request):
 	lista_distrito = Distrito.objects.all()
 
 	distrito_principal = lista_distrito.first()
-
-	presupuestos = Presupuesto.objects.filter(distrito__nombre="Asuncion",anio="2017").order_by('tipo_presupuesto')
+	presupuestos_anios = Presupuesto.objects.filter(distrito__nombre="Asunción").values('anio').distinct() 
+	presupuestos = Presupuesto.objects.filter(distrito__nombre="Asunción",anio="2017").order_by('tipo_presupuesto')
 
 	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal,
-	 'anio':2017 ,  'presupuestos':presupuestos ,'config':config}
+	 'anio':2017 ,  'presupuestos':presupuestos , 'presupuestos_anios':presupuestos_anios,'config':config}
 	return render_to_response('index.html', context)
 # Create your views here.
 

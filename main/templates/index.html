@@ -152,9 +152,14 @@
 
                 <div class="col-md-9">
                   <select id="selectanio" class="">
-                    
-                        <option value="2016" > 2016 </option>
-                        <option value="2017" selected> 2017 </option>
+
+                     {% for presupuesto in presupuestos_anios %}
+
+                   
+                       <option value="{{presupuesto.anio}}" > {{  presupuesto.anio}} </option>
+
+                             {%  endfor %}
+                     
                   </select>
                 </div>
               <span class="material-input"></span>
