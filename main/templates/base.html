@@ -48,7 +48,7 @@
         <![endif]-->
     <nav class="navbar navbar-warning navbar-fixed-top" role="navigation" id="menuPrincipal">
       <div class="container">
-        <div class="navbar-header">
+        <div class="navbar-header wow fadeInLeft" data-wow-duration="1s">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
@@ -59,7 +59,7 @@
         </div>
 
         
-        <div id="navbar" class="navbar-collapse collapse navbar-warning-collapse">  
+        <div id="navbar" class="navbar-collapse collapse navbar-warning-collapse wow fadeInRight" data-wow-duration="1s">  
          
           <ul class="nav navbar-nav navbar-right">
              <li><a href="/metodologia">Metodología</a></li>
@@ -115,7 +115,8 @@
         <script src="{% static 'js/jquery.smoothState.js' %}"></script>
         <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
         <script src="{% static 'js/material.min.js' %}"></script>
-        <script src="{% static 'js/ripples.min.js' %}"></script>       
+        <script src="{% static 'js/ripples.min.js' %}"></script>  
+        <script src="{% static 'js/wow.min.js' %}"></script>     
         <script src="{% static 'js/main.js' %}"></script>
 
 
@@ -195,6 +196,8 @@
 });
 
 $(document).ready(function() {
+new WOW().init();
+
   // add a hash to the URL when the user clicks on a tab
   $('a[data-toggle="tab"]').on('click', function(e) {
     history.pushState(null, null, $(this).attr('href'));
