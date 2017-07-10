@@ -167,7 +167,7 @@ class Presupuesto(models.Model):
 	distrito =  models.ForeignKey(Distrito,related_name="distritos", default="",  null=False, blank=False)
 	anio = models.CharField(max_length=15,
     						 choices=ANIOS, default="2017")
-	documento_csv = models.FileField()
+	documento_csv = models.FileField(null=True, blank=True)
 	document_pdf = models.FileField(null=True, blank=True)
 	tipo_presupuesto = models.CharField(max_length=80,
     						 choices=TIPO_PRESUPUESTO)
