@@ -52,10 +52,11 @@ def distrito2(request, distrito_nombre, anio ):
 	lista_eje = Eje.objects.filter(distrito = distrito_principal)
 	lista_pregunta = Pregunta.objects.filter(eje__distrito = distrito_principal,  anio__year=anio)
 	lista_distrito = Distrito.objects.all()
+	presupuestos_anios = Presupuesto.objects.filter(distrito=distrito_principal).values('anio').distinct()
 	presupuestos = Presupuesto.objects.filter(distrito=distrito_principal,anio=anio).order_by('tipo_presupuesto')
 	print presupuestos
 	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 
-	'distrito_principal':distrito_principal, 'anio':anio, 'presupuestos':presupuestos, 'config':config }
+	'distrito_principal':distrito_principal, 'anio':anio, 'presupuestos':presupuestos, 'presupuestos_anios':presupuestos_anios, 'config':config }
 	return render_to_response('index.html', context)
 
 # def distrito(request, distrito_nombre):
