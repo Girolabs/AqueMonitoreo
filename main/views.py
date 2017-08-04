@@ -38,7 +38,7 @@ def index(request):
 	lista_distrito = Distrito.objects.all()
 
 	distrito_principal = lista_distrito.first()
-	presupuestos_anios = Presupuesto.objects.filter(distrito__nombre="Asunción").values('anio').distinct() 
+	presupuestos_anios = Presupuesto.objects.filter(distrito__nombre="Asunción").order_by('anio').values('anio').distinct() 
 	presupuestos = Presupuesto.objects.filter(distrito__nombre="Asunción",anio="2017").order_by('tipo_presupuesto')
 
 	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 'distrito_principal':distrito_principal,
@@ -52,7 +52,7 @@ def distrito2(request, distrito_nombre, anio ):
 	lista_eje = Eje.objects.filter(distrito = distrito_principal)
 	lista_pregunta = Pregunta.objects.filter(eje__distrito = distrito_principal,  anio__year=anio)
 	lista_distrito = Distrito.objects.all()
-	presupuestos_anios = Presupuesto.objects.filter(distrito=distrito_principal).values('anio').distinct()
+	presupuestos_anios = Presupuesto.objects.filter(distrito=distrito_principal).order_by('anio').values('anio').distinct()
 	presupuestos = Presupuesto.objects.filter(distrito=distrito_principal,anio=anio).order_by('tipo_presupuesto')
 	print presupuestos
 	context = {'lista_eje':lista_eje , 'lista_pregunta':lista_pregunta, 'lista_distrito':lista_distrito, 

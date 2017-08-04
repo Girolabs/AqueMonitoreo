@@ -257,7 +257,7 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
           }
 
           //  texto_cortado = texto_cortado.slice(3) + "...";
-          return d.name; 
+          return  texto_cortado; 
         })     
 
         

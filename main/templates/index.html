@@ -404,6 +404,31 @@
 
 
 
+                        {% for presupuesto in presupuestos %}
+                              {% if presupuesto.tipo_presupuesto == "ingresos" %}
+
+                              <script type="text/javascript" src="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"></script>
+                                    
+                              {% endif %}
+                              
+                              {% if presupuesto.tipo_presupuesto == "por_rubro" %}
+                              <script type="text/javascript" src="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"></script>
+                                  
+                              {% endif %}
+                              
+
+
+                              {% if presupuesto.tipo_presupuesto == "por_programa" %}
+
+                              <script type="text/javascript" src="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"></script>
+                                   
+                              {% endif %}
+                        {% endfor %}
+
+
+
+
+
        <script src="{% static 'js/underscore.min.js' %}"></script>
      <script src="{% static 'js/d3.min.js' %}"></script>
 
