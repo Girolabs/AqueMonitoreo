@@ -20,7 +20,7 @@
 
 .treemap {
   width: 100%;
-  height: 300px;
+  height: 400px;
   background: #ddd;
 }
 
@@ -112,6 +112,19 @@
 
 .pagination>li>a, .pagination>li>span {
   color: #f47a2f;
+}
+
+.datos_tabla thead {
+  background: #f47a2f;
+    color: white;
+}
+
+.datos_tabla thead {
+  background: #f47a2f;
+    color: white;
+}
+.datos_tabla tbody {
+  background: white;
 }
 
 
@@ -227,9 +240,23 @@
                    
 
                       <div class="row">
-                          <div class="col-md-12">
+                          <div class="col-md-8">
                                      <div class="treemap"  id="treemap"></div>
                           </div>
+
+                           <div class="col-md-4">
+
+                              <div class="datos_tabla">
+
+                                <table  class="table table-striped table-bordered">
+                                  
+
+                                </table>
+
+
+                               </div>
+
+                            </div>
 
                       </div>
            
@@ -240,11 +267,13 @@
 
                      <div class="row">
 
-                      <div class="col-md-12">
-                      <a  class="ver-datos "> <button class="btn btn-sm black " > Ver Datos</button></a>
-                      <a  class="ocultar-datos hide "> <button class="btn btn-sm black " > Ocultar Datos</button></a>
+                      <div class="col-md-8">
+                     
                        <table id="tabla" class="table table-striped table-bordered" cellspacing="0" width="100%"></table>
+
+                       
                     </div> 
+
 
                   </div>
 
@@ -544,7 +573,10 @@ $.get( archivo_csv, function( data ) {
                   columns: columnas                  
               } );
 
-              $("#tabla_wrapper").addClass("hide");
+
+
+
+     
             
           });  
      
@@ -557,26 +589,20 @@ $.get( archivo_csv, function( data ) {
 $(".vis-boton").click(function(){
    
     $("#treemap").html("");
-    $(".btn-granate").removeClass("btn-raised");
+    $(".btn-granate").removeClass("btn-raised");    
     $(this).addClass("btn-raised");
+
+
     archivo_csv = $(this).data("archivo");
     archivo_pdf =$(this).data("pdf");
     Treemap2(anio, archivo_csv , "#treemap");   
 
     $(".download").attr("href", archivo_csv);
     $(".download-pdf").attr("href", archivo_pdf);  
-    $(".ver-datos").removeClass("hide");
-    $(".ocultar-datos").addClass("hide");
-
-   
-       if (typeof dataTabla === 'undefined') {} else{
-    console.log('hay tabla, destruyo')
-     dataTabla.destroy();
-  };
+    
   
-   
 
-    $("#tabla").html("");
+
 
     
 
@@ -584,56 +610,15 @@ $(".vis-boton").click(function(){
   });
 
 
-/* Inicializo los datos con el primer presupuesto cargado */
+
+ /* Inicializo los datos con el primer presupuesto cargado */
 $(".vis-boton").first().addClass("btn-raised");
 archivo_csv = $(".vis-boton").first().data("archivo");
-Treemap2(anio,archivo_csv, "#treemap");  
+Treemap2(anio,archivo_csv, "#treemap");
+
 $(".download").attr("href", $(".vis-boton").first().data("archivo"))
 $(".download-pdf").attr("href", $(".vis-boton").first().data("pdf"))
 
-/*
-dibujarTabla();
-
- $("#tabla_wrapper").addClass("hide");*/
-
-           // $( "#tabla" ).html( data );
-
-
-    
-      
-
- $(".ver-datos").click(function  () {
-
-
-
- 
-                
-
-             $("#tabla").removeClass("hide");
-            dibujarTabla();
-
-            $("#tabla_wrapper").toggleClass("hide");
-            $(".ver-datos").toggleClass("hide");
-           // $(".ocultar-datos").toggleClass("hide");
-            
-
-           // dibujarTabla()
-            
-   
- }) // click 
-
- $(".ocultar-datos").click(function(){
-   // $("#treemap").toggleClass("hide");
-    
-      $(".ver-datos").toggleClass("hide");
-      $(".ocultar-datos").toggleClass("hide");
-
-          
-            $("#tabla_wrapper").toggleClass("hide");
-            $("#tabla").html("");
-             $("#tabla").toggleClass("hide");
-              //dataTabla.destroy();
- })
 
 
 

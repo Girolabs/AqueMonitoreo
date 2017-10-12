@@ -40,7 +40,7 @@ function Treemap2 (anio, presupuesto, idcanvas) {
 
 var margin = {top: 20, right: 0, bottom: 0, left: 0},
     width = $(idcanvas).width(),
-    height = 300 - margin.top - margin.bottom,
+    height = 400 - margin.top - margin.bottom,
     formatNumber = d3.format(",d"),
     transitioning;
 
@@ -209,6 +209,21 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
         .select("text")
         .text(name(d));
     console.log(name(d))
+    console.log(d)
+     console.log(d._children.length)
+
+   //   $(".datos_tabla").prepend("<h3>" + d.name +"</h3>");
+        $(".datos_tabla > table").html("");
+
+     $(".datos_tabla > table").append(" <thead><tr><th>Descripcion</th><th>Monto</th> </tr></thead>");
+      $(".datos_tabla > table").append(" <tbody></tbody>");
+     for (i = 0; i < d._children.length; i++) { 
+    console.log(d._children[i].name + "-" + d._children[i].value )
+
+
+    $(".datos_tabla > table > tbody").append("<tr>" + "<td>" + d._children[i].name + "</td>" +  "<td>" + d._children[i].value.toLocaleString() +"</td>" +"</tr>");
+}
+     //
 
 
 
@@ -245,8 +260,8 @@ d3.csv(presupuesto, function(csv_data) { // Traigo el csv
         .attr("dy", ".75em")
         .attr("fill", "rgb(51, 51, 51)")
         .text(function(d) {
-          console.log(name(d))
-          console.log(d)
+        //  console.log(name(d))
+          //console.log(d)
           if (d.name) {
             texto_cortado =  d.name ;
           }         
