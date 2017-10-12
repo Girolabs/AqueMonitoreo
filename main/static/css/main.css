@@ -206,6 +206,10 @@ select#selectanio {
 }
 
 
+.wow {
+        visibility: hidden;
+}
+
 
 
 @media (max-device-width: 700px) {

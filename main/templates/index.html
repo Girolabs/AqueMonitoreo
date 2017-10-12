@@ -211,6 +211,16 @@
                               {% if presupuesto.tipo_presupuesto == "por_programa" %}
                                    <button class="btn btn-sm btn-granate programa vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"> Presupuesto por Programa</button>
                               {% endif %}
+
+
+                                {% if presupuesto.tipo_presupuesto == "presupuesto_ejecutado" %}
+                                   <button class="btn btn-sm btn-granate programa vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"> Presupuesto Ejecurado</button>
+                              {% endif %}
+
+
+
+                              
+
                         {% endfor %}
 
                
@@ -486,6 +496,7 @@ $( document ).ready(function() {
 function dibujarTabla (argument) {
 
 console.log($('#tabla'));
+
 $.get( archivo_csv, function( data ) {
             dataSet= $.csv.toObjects(data);
              if ('nivel4' in historic_csv_data[0]) {
