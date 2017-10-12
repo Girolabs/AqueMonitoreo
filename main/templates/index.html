@@ -214,7 +214,7 @@
 
 
                                 {% if presupuesto.tipo_presupuesto == "presupuesto_ejecutado" %}
-                                   <button class="btn btn-sm btn-granate programa vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"> Presupuesto Ejecutado</button>
+                                   <button class="btn btn-sm btn-granate ejecutado vis-boton"  data-archivo="{{presupuesto.documento_csv.url}}" data-pdf="{% if presupuesto.document_pdf%}{{presupuesto.document_pdf.url}}{% endif %}"> Presupuesto Ejecutado</button>
                               {% endif %}
 
 
@@ -497,15 +497,16 @@ function dibujarTabla (argument) {
 
 console.log($('#tabla'));
 
+
 $.get( archivo_csv, function( data ) {
             dataSet= $.csv.toObjects(data);
              if ('nivel4' in historic_csv_data[0]) {
               columnas = [
                       { data: "nivel1" , title: "nivel1" },
                       { data: "nivel2" , title: "nivel2" },
-                     { data: "nivel3" , title: "nivel3" },
+                      { data: "nivel3" , title: "nivel3" },
                       { data: "nivel4" , title: "nivel4" },
-                       { data: "monto"  , title: "monto",  render: function ( data, type, full, meta ) {
+                      { data: "monto"  , title: "monto",  render: function ( data, type, full, meta ) {
                         return Number(data).format(0, 3, '.', ',');
                       }}                        
                   ]          
@@ -563,21 +564,27 @@ $(".vis-boton").click(function(){
     Treemap2(anio, archivo_csv , "#treemap");   
 
     $(".download").attr("href", archivo_csv);
-    $(".download-pdf").attr("href", archivo_pdf);
-
-
-
-  
+    $(".download-pdf").attr("href", archivo_pdf);  
     $(".ver-datos").removeClass("hide");
     $(".ocultar-datos").addClass("hide");
-    dataTabla.destroy();
-      $("#tabla").html("");
+
+   
+       if (typeof dataTabla === 'undefined') {} else{
+    console.log('hay tabla, destruyo')
+     dataTabla.destroy();
+  };
+  
+   
+
+    $("#tabla").html("");
 
     
 
    
   });
 
+
+/* Inicializo los datos con el primer presupuesto cargado */
 $(".vis-boton").first().addClass("btn-raised");
 archivo_csv = $(".vis-boton").first().data("archivo");
 Treemap2(anio,archivo_csv, "#treemap");  
@@ -597,14 +604,18 @@ dibujarTabla();
 
  $(".ver-datos").click(function  () {
 
+
+
+ 
+                
+
+             $("#tabla").removeClass("hide");
             dibujarTabla();
 
             $("#tabla_wrapper").toggleClass("hide");
-           // $("#treemap").toggleClass("hide");
             $(".ver-datos").toggleClass("hide");
-            $(".ocultar-datos").toggleClass("hide");
-
-             $("#tabla").removeClass("hide");
+           // $(".ocultar-datos").toggleClass("hide");
+            
 
            // dibujarTabla()
             
@@ -617,10 +628,11 @@ dibujarTabla();
       $(".ver-datos").toggleClass("hide");
       $(".ocultar-datos").toggleClass("hide");
 
-            dataTabla.destroy();
+          
             $("#tabla_wrapper").toggleClass("hide");
             $("#tabla").html("");
              $("#tabla").toggleClass("hide");
+              //dataTabla.destroy();
  })
 
 
